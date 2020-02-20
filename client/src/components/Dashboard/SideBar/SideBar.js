@@ -9,14 +9,14 @@ function SideBar(props) {
                 return <div><Room room={room} getRoomInfo={props.getRoomInfo} /></div>
             })
         :   ''
-        
+
     return (
         <section className='sidebar'>
             <h1>From SideBar</h1>
             <div>
                 {rooms}
             </div>
-            <button onClick={props.addRoom}>New Room</button>
+            <button onClick={props.showAddRoom}>New Room</button>
         </section>
     )
 }

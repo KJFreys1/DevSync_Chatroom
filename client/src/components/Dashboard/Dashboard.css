@@ -1,3 +1,7 @@
 .dash-container {
     display: flex;
 }
+
+.full-dash {
+    height: 500px;
+}

@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 const roomSchema = new Schema({
     name: String,
+    description: String,
     fixed: {
         type: Boolean,
         default: false

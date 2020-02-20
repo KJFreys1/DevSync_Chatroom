@@ -3,12 +3,14 @@ import axios from 'axios'
 
 import SideBar from './SideBar/SideBar'
 import Main from './Main/Main'
+import AddRoom from './Modal/AddRoom'
 
 import './Dashboard.css'
 
 function Dashboard(props) {
     let [rooms, setRooms] = useState([])
     let [display, setDisplay] = useState({})
+    let [addRoomDisplay, setAddRoomDisplay] = useState('hidden')
 
     const roomURL = 'http://localhost:4000/rooms'
     const dataURL = 'http://localhost:4000/user'
@@ -26,12 +28,21 @@ function Dashboard(props) {
         }
     }, [])
 
+    const showAddRoom = () => {
+        setAddRoomDisplay('show')
+    }
+
+    const hideAddRoom = () => {
+        setAddRoomDisplay('hidden')
+    }
+
     //Needs refractor
-    const addRoom = () => {
-        const room = { name: 'Testing room' }
+    const addRoom = (name, description) => {
+        const room = { name, description }
         axios.post(dataURL + '/room', room, header).then(res => {
             setRooms(res.data.rooms)
         }).catch(err => console.log(err))
+        hideAddRoom()
     }
 
     //Needs refractor
@@ -71,9 +82,12 @@ function Dashboard(props) {
     if (!props.user) props.history.push('/login')
 
     return (
-        <div className='dash-container'>
-            <SideBar rooms={rooms} addRoom={addRoom} getRoomInfo={getRoomInfo} />
-            <Main display={display} createPost={createPost} addComment={addComment} />
+        <div className='full-dash'>
+            <AddRoom display={addRoomDisplay} addRoom={addRoom} />
+            <div className='dash-container'>
+                <SideBar rooms={rooms} showAddRoom={showAddRoom} getRoomInfo={getRoomInfo} />
+                <Main display={display} createPost={createPost} addComment={addComment} />
+            </div>
         </div>
     )
 }
