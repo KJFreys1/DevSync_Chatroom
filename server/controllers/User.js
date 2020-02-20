@@ -73,6 +73,7 @@ router.put('/room/:rid', auth, (req, res) => {
     })
 })
 
+//      TEST
 //@route        /user/room/:rid
 //desc          Deletes specified room and cascades to connected users
 //              list of active rooms and deletes all connected posts and 
@@ -143,6 +144,15 @@ router.post('/post/:rid', auth, (req, res) => {
                     })
                 })
             })
+    })
+})
+
+router.delete('/post/:pid', auth, (req, res) => {
+    const pid = req.params.pid
+    Post.findByIdAndDelete(pid).then(() => {
+        Comment.deleteMany({ post: pid }).then(() => {
+            Room.findOneAndDelete({ posts: { $in: pid } })
+        })
     })
 })
 

@@ -50,6 +50,9 @@ function Dashboard(props) {
         const newRooms = [...rooms]
         newRooms.splice(rooms.indexOf(room), 1)
         setRooms(newRooms)
+        if (display.room === room) {
+            setDisplay({}) 
+        }
     }
 
     //Needs refractor
@@ -63,6 +66,13 @@ function Dashboard(props) {
             }
             setDisplay(data)
         })
+    }
+
+    const deletePost = (post) => {
+        axios.delete(dataURL + '/post/' + post._id, header)
+        const data = {...display}
+        data.posts.splice(data.posts.indexOf(post), 1)
+        setDisplay(data)
     }
 
     const addComment = (post, text) => {
@@ -93,7 +103,7 @@ function Dashboard(props) {
             <AddRoom display={addRoomDisplay} addRoom={addRoom} />
             <div className='dash-container'>
                 <SideBar rooms={rooms} showAddRoom={showAddRoom} getRoomInfo={getRoomInfo} deleteRoom={deleteRoom} />
-                <Main display={display} createPost={createPost} addComment={addComment} />
+                <Main display={display} createPost={createPost} deletePost={deletePost} addComment={addComment} />
             </div>
         </div>
     )

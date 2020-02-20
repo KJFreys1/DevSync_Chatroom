@@ -36,7 +36,6 @@ function Main(props) {
 
     const handleShowComments = (e, idx) => {
         e.preventDefault()
-        console.log('here')
         setShowCom(idx)
     }
 
@@ -70,7 +69,7 @@ function Main(props) {
                 return (
                     <div className='post'>
                         <h2>{post.user.name}</h2>
-                        <h3>{post.message}</h3>
+                        <h3>{post.message}</h3><span onClick={e => props.deletePost(post)}>Delete</span>
                         {displayComments}
                     </div>
                 )
