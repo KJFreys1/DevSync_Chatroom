@@ -1,13 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import './Main.css'
 
 function Main(props) {
+    let [text, setText] = useState('')
+    let [comment, setComment] = useState('')
+
     const data = props.display
     let display = 'No Data'
 
-    console.log('here')
-    console.log(data.posts)
+    const handleTextChange = e => {
+        e.preventDefault()
+        setText(e.target.value)
+    }
+
+    const handleCommentChange = e => {
+        e.preventDefault()
+        setComment(e.target.value)
+    }
+
+    const handlePostSubmit = e => {
+        e.preventDefault()
+        props.createPost(data.room, text)
+        setText('')
+        setComment('')
+    }
+
+    const handleCommentSubmit = (e, post) => {
+        e.preventDefault()
+        props.addComment(post, comment)
+        setText('')
+        setComment('')
+    }
+
     if (data) {
         if (data.type == 'room') {
             const posts = data.posts.map(post => {
@@ -20,7 +45,10 @@ function Main(props) {
                         {post.comments.map(comment => {
                             return <p>{comment.message}</p>
                         })}
-                        <button onClick={() => props.addComment(post)}>Add Comment</button>
+                        <form onSubmit={e => handleCommentSubmit(e, post)}>
+                            <input type="text" id="comment" name="comment" value={comment} onChange={handleCommentChange} required />
+                            <button type='submit'>Reply</button>
+                        </form>
                     </div>
                 )
             })
@@ -28,7 +56,10 @@ function Main(props) {
                 <div>
                     <h1>{data.room.name}</h1>
                     {posts ? posts : ''}
-                    <button onClick={() => props.createPost(data.room)}>New Post</button>
+                    <form onSubmit={handlePostSubmit}>
+                        <input type="text" id="post" name="post" value={text} onChange={handleTextChange} required />
+                        <button type='submit'>New Post</button>
+                    </form>
                 </div>
             )
         }

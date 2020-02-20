@@ -35,8 +35,8 @@ function Dashboard(props) {
     }
 
     //Needs refractor
-    const createPost = room => {
-        const post = { message: 'Hello world' }
+    const createPost = (room, text) => {
+        const post = { message: text }
         axios.post(dataURL + '/post/' + room._id, post, header).then(res => {
             const data = {
                 room,
@@ -47,8 +47,8 @@ function Dashboard(props) {
         })
     }
 
-    const addComment = post => {
-        const comment = { message: 'New Comment' }
+    const addComment = (post, text) => {
+        const comment = { message: text }
         axios.post(dataURL + '/comment/' + post._id, comment, header)
         const data = {...display}
         const newPost = {...post}
