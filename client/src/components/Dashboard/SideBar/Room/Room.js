@@ -2,7 +2,7 @@ import React from 'react'
 
 function Room(props) {
     return(
-        <div>{props.room.name}</div>
+        <div onClick={() => props.getRoomInfo(props.room)}>{props.room.name}</div>
     )
 }
 
