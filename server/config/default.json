@@ -1,0 +1,7 @@
+{
+    "mongoURI": "",
+    "jwtSecret": "sl_myJwtSecret",
+    "jwtSession": {
+        "session": false
+    }
+}

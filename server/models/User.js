@@ -2,11 +2,7 @@ const mongoose = require('../db/connection')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-    first_name: {
-        type: String,
-        required: true
-    },
-    last_name: {
+    name: {
         type: String,
         required: true
     },
@@ -59,7 +55,7 @@ const userSchema = new Schema({
             type: mongoose.Schema.Types.ObjectId
         }
     ],
-    friends_favorited: [
+    users_favorited: [
         {
             ref: 'User',
             type: mongoose.Schema.Types.ObjectId

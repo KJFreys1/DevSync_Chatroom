@@ -3,6 +3,14 @@ const Schema = mongoose.Schema
 
 const roomSchema = new Schema({
     name: String,
+    fixed: {
+        type: Boolean,
+        default: false
+    },
+    private: {
+        type: Boolean,
+        default: false
+    },
     users: [
         {
             ref: 'User',
