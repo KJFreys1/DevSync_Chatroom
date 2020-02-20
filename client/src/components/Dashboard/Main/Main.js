@@ -5,6 +5,7 @@ import './Main.css'
 function Main(props) {
     let [text, setText] = useState('')
     let [comment, setComment] = useState('')
+    let [showCom, setShowCom] = useState()
 
     const data = props.display
     let display = 'No Data'
@@ -33,21 +34,44 @@ function Main(props) {
         setComment('')
     }
 
+    const handleShowComments = (e, idx) => {
+        e.preventDefault()
+        console.log('here')
+        setShowCom(idx)
+    }
+
+    const handleHideComments = (e) => {
+        e.preventDefault()
+        setShowCom()
+    }
+
     if (data) {
         if (data.type == 'room') {
-            const posts = data.posts.map(post => {
+            const posts = data.posts.map((post, idx) => {
+                const comments = post.comments.map(comment => {
+                    return (
+                        <div>
+                            <p>{comment.message}</p>
+                        </div>
+                    )
+                })
+                const displayComments = idx === showCom
+                    ?   (
+                            <div>
+                                {comments}
+                                <p className='hide-show' onClick={e => handleHideComments(e)}>Hide Comments</p>
+                                <form onSubmit={e => handleCommentSubmit(e, post)}>
+                                    <input type="text" id="comment" name="comment" value={comment} onChange={handleCommentChange} required />
+                                    <button type='submit'>Reply</button>
+                                </form>
+                            </div>
+                        )
+                    :   <p className='hide-show' onClick={e => handleShowComments(e, idx)}>View Comments</p>
                 return (
-                    <div>
+                    <div className='post'>
                         <h2>{post.user.name}</h2>
-                        <p>{post.message}</p>
-                        <p>COMMENTS</p>
-                        {post.comments.map(comment => {
-                            return <p>{comment.message}</p>
-                        })}
-                        <form onSubmit={e => handleCommentSubmit(e, post)}>
-                            <input type="text" id="comment" name="comment" value={comment} onChange={handleCommentChange} required />
-                            <button type='submit'>Reply</button>
-                        </form>
+                        <h3>{post.message}</h3>
+                        {displayComments}
                     </div>
                 )
             })

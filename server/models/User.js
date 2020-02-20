@@ -19,18 +19,6 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    comments: [
-        {
-            ref: 'Comment',
-            type: mongoose.Schema.Types.ObjectId
-        }
-    ],
-    posts: [
-        {
-            ref: 'Post',
-            type: mongoose.Schema.Types.ObjectId
-        }
-    ],
     messages_active: [
         {
             ref: 'MessageList',

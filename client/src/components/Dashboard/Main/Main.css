@@ -3,3 +3,16 @@
     width: 75%;
     background-color: lightgreen;
 } 
+
+.post {
+    background-color: rgb(230, 230, 230);
+}
+
+.hide-show {
+    color: blue;
+    text-decoration: underline;
+}
+
+.hide-show:hover {
+    cursor: pointer;
+}
