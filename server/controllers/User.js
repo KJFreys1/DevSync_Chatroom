@@ -5,6 +5,7 @@ const auth = require('../middleware/auth')
 const User = require('../models/User')
 const Room = require('../models/Room')
 const Post = require('../models/Post')
+const Comment = require('../models/Comment')
 
 router.get('/user', auth, (req, res) => {
     User.findById(req.user.id)
@@ -70,6 +71,44 @@ router.post('/post/:rid', auth, (req, res) => {
                                         post,
                                         posts,
                                         room,
+                                        user
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+    })
+})
+
+router.get('/comments', (req, res) => {
+    User.findById(req.user.id)
+        .select('-password')
+        .populate('comments')
+        .then(user => {
+            res.json(user.comments)
+        })
+})
+
+router.post('/comment/:pid', auth, (req, res) => {
+    Comment.create(req.body).then(comment => {
+        User.findById(req.user.id)
+            .select('-password')
+            .then(user => {
+                Post.findById(req.params.pid).then(post => {
+                    user.comments.push(comment._id)
+                    user.save().then(() => {
+                        comment.user = user._id
+                        comment.post = post._id
+                        comment.save().then(() => {
+                            post.comments.push(comment._id)
+                            post.save().then(() => {
+                                Comment.find({ post: post._id }).then(comments => {
+                                    res.json({
+                                        comment,
+                                        comments,
+                                        post,
                                         user
                                     })
                                 })
