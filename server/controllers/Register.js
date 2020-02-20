@@ -7,11 +7,14 @@ const config = require('config')
 const User = require('../models/User')
 
 router.get('/', (req, res) => {
-    User.find({}).then(users => {
-        res.json(users)
-    })
+    User.find({})
+        .select('-password')
+        .then(users => {
+            res.json(users)
+        })
 })
 
+//Register
 router.post('/', (req, res) => {
     const { name, email, password } = req.body
     
@@ -36,7 +39,6 @@ router.post('/', (req, res) => {
                 if(err) throw err
                 newUser.password = hash
                 newUser.save().then(user => {
-
                     jwt.sign(
                         { id: user.id },
                         config.get('jwtSecret'),

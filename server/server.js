@@ -18,12 +18,15 @@ app.use(session({
 }))
 
 const roomController = require('./controllers/Rooms')
-const userController = require('./controllers/Users')
-const authController = require('./controllers/Auth')
+const registerController = require('./controllers/Register')
+const loginController = require('./controllers/Login')
+const userController = require('./controllers/User')
 
 app.use('/rooms', roomController)
-app.use('/users', userController)
-app.use('/auth', authController)
+app.use('/register', registerController)
+app.use('/login', loginController)
+app.use('/user', userController)
+
 
 const PORT = process.env.PORT || 4000
 

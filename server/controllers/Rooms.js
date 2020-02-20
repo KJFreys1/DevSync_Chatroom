@@ -43,4 +43,10 @@ router.get('/posts', (req, res) => {
     })
 })
 
+router.post('/posts', (req, res) => {
+    Post.create(req.body).then(new_post => {
+        res.json(new_post)
+    })
+})
+
 module.exports = router
