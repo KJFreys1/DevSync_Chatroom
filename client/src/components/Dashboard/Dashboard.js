@@ -36,13 +36,20 @@ function Dashboard(props) {
         setAddRoomDisplay('hidden')
     }
 
-    //Needs refractor
     const addRoom = (name, description) => {
         const room = { name, description }
         axios.post(dataURL + '/room', room, header).then(res => {
             setRooms(res.data.rooms)
+            getRoomInfo(res.data.rooms[res.data.rooms.length - 1])
+            hideAddRoom()
         }).catch(err => console.log(err))
-        hideAddRoom()
+    }
+
+    const deleteRoom = room => {
+        axios.delete(dataURL + '/room/' + room._id, header)
+        const newRooms = [...rooms]
+        newRooms.splice(rooms.indexOf(room), 1)
+        setRooms(newRooms)
     }
 
     //Needs refractor
@@ -85,7 +92,7 @@ function Dashboard(props) {
         <div className='full-dash'>
             <AddRoom display={addRoomDisplay} addRoom={addRoom} />
             <div className='dash-container'>
-                <SideBar rooms={rooms} showAddRoom={showAddRoom} getRoomInfo={getRoomInfo} />
+                <SideBar rooms={rooms} showAddRoom={showAddRoom} getRoomInfo={getRoomInfo} deleteRoom={deleteRoom} />
                 <Main display={display} createPost={createPost} addComment={addComment} />
             </div>
         </div>

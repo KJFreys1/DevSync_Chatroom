@@ -36,7 +36,6 @@ function Main(props) {
     if (data) {
         if (data.type == 'room') {
             const posts = data.posts.map(post => {
-                console.log(post)
                 return (
                     <div>
                         <h2>{post.user.name}</h2>

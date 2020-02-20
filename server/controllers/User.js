@@ -73,6 +73,34 @@ router.put('/room/:rid', auth, (req, res) => {
     })
 })
 
+router.delete('/room/:rid', auth, (req, res) => {
+    const rid = req.params.rid
+    Room.findByIdAndDelete(rid).then(() => {
+        Post.find({ room: rid }).then(posts => {
+            Promise.all(
+                posts.map(post => {
+                    const pid = post._id
+                    Comment.deleteMany({ post: pid })
+                })
+            )
+        }).then(() => {
+            Post.deleteMany({ room: rid }).then(() => {
+                User.find({ rooms_active: { $in: rid } }).then(users => {
+                    Promise.all(
+                        users.map(user => {
+                            User.findOneAndUpdate(
+                                user._id,
+                                { $pull: { rooms_active: rid } },
+                                { new: true }
+                            )
+                        })
+                    )
+                })
+            })
+        })
+    })
+})
+
 //      INVALID
 //@route        /user/posts
 //@desc         Gets all posts connected to user

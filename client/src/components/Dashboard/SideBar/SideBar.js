@@ -6,7 +6,12 @@ import './SideBar.css'
 function SideBar(props) {
     const rooms = props.rooms
         ?   props.rooms.map(room => {
-                return <div><Room room={room} getRoomInfo={props.getRoomInfo} /></div>
+                return (
+                    <div>
+                        <Room room={room} getRoomInfo={props.getRoomInfo} />
+                        <button onClick={() => props.deleteRoom(room)}>Delete</button>
+                    </div>
+                )
             })
         :   ''
 
