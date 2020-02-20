@@ -28,7 +28,7 @@ function Login(props) {
     return (
         <div>
             <h1>Login</h1>
-            <form onSubmit={evt => handleSubmit(evt)}>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" value={email} onChange={handleEmailChange} required />

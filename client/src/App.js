@@ -55,7 +55,7 @@ function App() {
       <Header handleLogout={handleLogout} />
       <Route path='/login' render={props => <Login {...props} handleLogin={handleLogin} user={user} />} />
       <Route path='/register' render={props => <Register {...props} handleSignUp={handleSignUp} user={user} />} />
-      <Route path='/dashboard' render={() => <Dashboard />} />
+      <Route path='/dashboard' render={props => <Dashboard {...props} user={user} />} />
     </main>
   );
 }

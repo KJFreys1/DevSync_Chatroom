@@ -32,9 +32,10 @@ router.post('/room', auth, (req, res) => {
                     room.users.push(user._id)
                     room.save().then(() => {
                         Room.find({}).then(rooms => {
+                            userRooms = rooms.filter(rm => rm.users.includes(user._id))
                             res.json({
                                 room,
-                                rooms,
+                                rooms: userRooms,
                                 user
                             })
                         })
