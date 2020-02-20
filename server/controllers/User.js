@@ -52,13 +52,31 @@ router.get('/posts', (req, res) => {
         })
 })
 
-router.post('/post', (req, res) => {
+router.post('/post/:rid', auth, (req, res) => {
     Post.create(req.body).then(post => {
         User.findById(req.user.id)
             .select('-password')
             .then(user => {
-                user.posts.push(post)
-                user.save()
+                Room.findById(req.params.rid).then(room => {
+                    user.posts.push(post._id)
+                    user.save().then(() => {
+                        post.user = user._id
+                        post.room = room._id
+                        post.save().then(() => {
+                            room.posts.push(post._id)
+                            room.save().then(() => {
+                                Post.find({ room: room._id }).then(posts => {
+                                    res.json({
+                                        post,
+                                        posts,
+                                        room,
+                                        user
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
             })
     })
 })
