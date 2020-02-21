@@ -5,9 +5,9 @@ import './SideBar.css'
 
 function SideBar(props) {
     const rooms = props.rooms
-        ?   props.rooms.map(room => {
+        ?   props.rooms.map((room, idx) => {
                 return (
-                    <div>
+                    <div key={idx}>
                         <Room room={room} getRoomInfo={props.getRoomInfo} />
                         <button onClick={() => props.deleteRoom(room)}>Delete</button>
                     </div>

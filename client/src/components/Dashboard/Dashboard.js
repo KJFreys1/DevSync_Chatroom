@@ -27,30 +27,37 @@ function Dashboard(props) {
     const name = props.user ? props.user.name : null
     
     useEffect(() => {
-        if (props.user) {
-            axios.get(dataURL + '/rooms', header).then(res => {
-                setRooms(res.data)
-            })
-        }
+        getAllRooms()
     }, [])
 
     useEffect(() => {
         socket = io(ENDPOINT)
         if (display.type == 'room') {
-            socket.emit('join', { name, room: display.room.name }, (error) => {
+            socket.emit('join', { name, room: display.room }, (error) => {
                 if (error) alert(error)
             })
         }
     }, [ENDPOINT, display.room.name])
 
     useEffect(() => {
+        socket.on('updatePost', room => {
+            getRoomInfo(room)
+        })
 
         return () => {
             socket.emit('disconnect')
 
             socket.off()
         }
-    }, {})
+    }, [display.posts])
+
+    const getAllRooms = () => {
+        if (props.user) {
+            axios.get(dataURL + '/rooms', header).then(res => {
+                setRooms(res.data)
+            })
+        }
+    }
 
     const showAddRoom = () => {
         setAddRoomDisplay('show')
@@ -89,6 +96,7 @@ function Dashboard(props) {
                 type: 'room'
             }
             setDisplay(data)
+            socket.emit('sendPost', display.room)
         })
     }
 
@@ -97,6 +105,7 @@ function Dashboard(props) {
         const data = {...display}
         data.posts.splice(data.posts.indexOf(post), 1)
         setDisplay(data)
+        socket.emit('sendPost', display.room)
     }
 
     const addComment = (post, text) => {
@@ -107,6 +116,7 @@ function Dashboard(props) {
         newPost.comments.push(comment)
         data.posts.splice(data.posts.indexOf(post), 1, newPost)
         setDisplay(data)
+        socket.emit('sendPost', display.room)
     }
 
     const getRoomInfo = room => {

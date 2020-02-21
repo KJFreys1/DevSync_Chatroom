@@ -49,7 +49,7 @@ function Main(props) {
             const posts = data.posts.map((post, idx) => {
                 const comments = post.comments.map(comment => {
                     return (
-                        <div>
+                        <div key={idx}>
                             <p>{comment.message}</p>
                         </div>
                     )
