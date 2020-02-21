@@ -1,5 +1,48 @@
 .sidebar {
     height: 500px;
     width: 25%;
-    background-color: lightgrey;
+    background-color: rgb(195, 195, 195);
+    color: rgb(50, 50, 50);
+}
+
+.title-side {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 3px solid rgb(220, 220, 220);
+}
+
+.my-rooms {
+    margin-left: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.add-room-button {
+    color: grey;
+    border: 2px solid grey;
+    border-radius: 1000px;
+    height: 16px;
+    width: 16px;
+    padding: 0;
+    line-height: 14px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.add-room-button:hover {
+    cursor: pointer;
+}
+
+.view-all-rooms {
+    width: 80px;
+    font-size: 14px;
+    margin: 10px 20px 0 0;
+    float: right;
+    text-align: right;
+}
+
+.view-all-rooms:hover {
+    color: rgb(120, 120, 120);
+    cursor: pointer;
 }

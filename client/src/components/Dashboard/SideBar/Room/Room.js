@@ -1,8 +1,12 @@
 import React from 'react'
 
+import './Room.css'
+
 function Room(props) {
     return(
-        <div onClick={() => props.getRoomInfo(props.room)}>{props.room.name}</div>
+        <div className='bar' onClick={() => props.getRoomInfo(props.room)}>
+            <span></span><h3 className='side-single-container'>{props.room.name}</h3>
+        </div>
     )
 }
 

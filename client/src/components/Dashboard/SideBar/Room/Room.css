@@ -1,0 +1,10 @@
+.side-single-container {
+    text-transform: capitalize;
+    margin: auto;
+    padding: 10px 0 10px 20px;
+}
+
+.bar:hover {
+    cursor: pointer;
+    background-color: rgb(221, 221, 221);
+}

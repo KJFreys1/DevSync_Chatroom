@@ -5,7 +5,7 @@ import './SideBar.css'
 
 function SideBar(props) {
     // let [room, setRoom] = useState('')
-    const button = props.list ? 'Hide List' : 'List Rooms'
+    const button = props.list ? '- Hide List' : '+ List Rooms'
 
     // const handleRoomChange = e => {
     //     e.preventDefault()
@@ -30,26 +30,27 @@ function SideBar(props) {
     const rooms = props.rooms
         ?   props.rooms.map((room, idx) => {
                 return (
-                    <div key={idx}>
-                        <Room room={room} getRoomInfo={props.getRoomInfo} />
-                        <button onClick={() => props.deleteRoom(room)}>Delete</button>
-                    </div>
+                    <Room room={room} key={idx} getRoomInfo={props.getRoomInfo} />
+                    // {/* <button onClick={() => props.deleteRoom(room)}>Delete</button> */}
                 )
             })
         :   ''
 
     return (
         <section className='sidebar'>
-            <h1>My Rooms</h1>
-            <button onClick={handleListRooms}>{button}</button>
-            <div>
+            <div className='title-side'>
+                <h1 className='my-rooms'>My Rooms</h1>  
+                <div className='add-room-container'><div className='add-room-button' onClick={props.showAddRoom}>+</div></div>    
+            </div>
+            <div className='side-rooms-container'>
                 {rooms}
             </div>
-            <button onClick={props.showAddRoom}>New Room</button>
+            {/* <button onClick={props.showAddRoom}>New Room</button> */}
             {/* <form onSubmit={handleSubmit}>
                 <input type='text' value={room} onChange={handleRoomChange} />
                 <button type='submit'>Submit</button>
             </form> */}
+            <h6 className='view-all-rooms' onClick={handleListRooms}>{button}</h6>
         </section>
     )
 }

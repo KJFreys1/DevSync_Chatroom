@@ -57,7 +57,7 @@ function Main(props) {
     }
 
     if (data) {
-        if (data.type == 'room') {
+        if (data.type === 'room') {
             const displaySize = list ? 'partial-view' : 'full-view'
             const posts = data.posts.map((post, idx) => {
                 const comments = post.comments.map(comment => {
@@ -101,8 +101,15 @@ function Main(props) {
         }
         if (list) {
             roomList = (
-                <div className='listed-room'>
-                    {list.map(room => <h1 onClick={e => handleJoinRoom(e, room)}>{room.name}</h1>)}
+                <div className='listed-rooms-container'>
+                    <h1 className='title-list'>All Rooms</h1>
+                    <div className='listed-room'>
+                        {list.map(room => (
+                            <div className='list-bar' onClick={e => handleJoinRoom(e, room)}>
+                                <span></span><h3 className='list-single-container'>{room.name}</h3>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )
             

@@ -6,7 +6,7 @@
 } 
 
 .post {
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(199, 199, 199);
 }
 
 .hide-show {
@@ -23,11 +23,34 @@
 }
 
 .partial-view {
-    width: 60%;
+    width: 65%;
+}
+
+.listed-rooms-container {
+    width: 35%;
+    height: 500px;
+    background-color: rgb(200, 200, 200);
+    color: rgb(50, 50, 50);
+    border-left: 3px solid rgb(220, 220, 220);
 }
 
 .listed-room {
-    width: 40%;
-    height: 500px;
-    background-color: rgb(199, 199, 199)
+    border-top: 3px solid rgb(220, 220, 220);
+}
+
+.title-list {
+    margin-left: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.list-single-container {
+    text-transform: capitalize;
+    margin: auto;
+    padding: 10px 0 10px 20px;
+}
+
+.list-bar:hover {
+    cursor: pointer;
+    background-color: rgb(221, 221, 221);
 }
