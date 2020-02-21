@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "nodemon server.js"
   },
+  "engines": {
+    "node": "v13.1.0"
+  },
   "author": "Kyle Freyermuth",
   "license": "ISC",
   "dependencies": {
