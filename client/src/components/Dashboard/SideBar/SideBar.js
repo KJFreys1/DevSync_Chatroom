@@ -4,19 +4,19 @@ import Room from './Room/Room'
 import './SideBar.css'
 
 function SideBar(props) {
-    let [room, setRoom] = useState('')
+    // let [room, setRoom] = useState('')
     const button = props.list ? 'Hide List' : 'List Rooms'
 
-    const handleRoomChange = e => {
-        e.preventDefault()
-        setRoom(e.target.value)
-    }
+    // const handleRoomChange = e => {
+    //     e.preventDefault()
+    //     setRoom(e.target.value)
+    // }
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        props.joinRoom(room)
-        setRoom('')
-    }
+    // const handleSubmit = e => {
+    //     e.preventDefault()
+    //     props.joinRoom(room)
+    //     setRoom('')
+    // }
 
     const handleListRooms = e => {
         e.preventDefault()
@@ -41,15 +41,15 @@ function SideBar(props) {
     return (
         <section className='sidebar'>
             <h1>My Rooms</h1>
+            <button onClick={handleListRooms}>{button}</button>
             <div>
                 {rooms}
             </div>
             <button onClick={props.showAddRoom}>New Room</button>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
                 <input type='text' value={room} onChange={handleRoomChange} />
                 <button type='submit'>Submit</button>
-            </form>
-            <button onClick={handleListRooms}>{button}</button>
+            </form> */}
         </section>
     )
 }
