@@ -133,13 +133,14 @@ function Dashboard(props) {
 
     const addComment = (post, text) => {
         const comment = { message: text }
-        axios.post(dataURL + '/comment/' + post._id, comment, header)
+        axios.post(dataURL + '/comment/' + post._id, comment, header).then(() => {
+            socket.emit('sendPost', display.room)
+        })
         const data = {...display}
         const newPost = {...post}
         newPost.comments.push(comment)
         data.posts.splice(data.posts.indexOf(post), 1, newPost)
         setDisplay(data)
-        socket.emit('sendPost', display.room)
     }
 
     const getRoomInfo = room => {
