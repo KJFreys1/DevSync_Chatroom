@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import io from 'socket.io-client'
 
 import SideBar from './SideBar/SideBar'
 import Main from './Main/Main'
@@ -7,9 +8,11 @@ import AddRoom from './Modal/AddRoom'
 
 import './Dashboard.css'
 
+let socket
+
 function Dashboard(props) {
     let [rooms, setRooms] = useState([])
-    let [display, setDisplay] = useState({})
+    let [display, setDisplay] = useState({room: {name: null}})
     let [addRoomDisplay, setAddRoomDisplay] = useState('hidden')
 
     const roomURL = 'http://localhost:4000/rooms'
@@ -20,6 +23,9 @@ function Dashboard(props) {
         }
     }
 
+    const ENDPOINT = 'http://localhost:4000'
+    const name = props.user ? props.user.name : null
+    
     useEffect(() => {
         if (props.user) {
             axios.get(dataURL + '/rooms', header).then(res => {
@@ -27,6 +33,24 @@ function Dashboard(props) {
             })
         }
     }, [])
+
+    useEffect(() => {
+        socket = io(ENDPOINT)
+        if (display.type == 'room') {
+            socket.emit('join', { name, room: display.room.name }, (error) => {
+                if (error) alert(error)
+            })
+        }
+    }, [ENDPOINT, display.room.name])
+
+    useEffect(() => {
+
+        return () => {
+            socket.emit('disconnect')
+
+            socket.off()
+        }
+    }, {})
 
     const showAddRoom = () => {
         setAddRoomDisplay('show')
