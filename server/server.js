@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
 
     socket.on('sendPost', (room) => {
         const user = getUser(socket.id)
-        io.to(user.room).emit('updatePost', room)
+        socket.broadcast.to(user.room).emit('updatePost', room)
     })
 
     socket.on('disconnect', () => {

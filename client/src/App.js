@@ -11,7 +11,7 @@ function App() {
   let [data, setData] = useState()
   let [user, setUser] = useState()
 
-  const dataURL = 'http://localhost:4000'
+  const dataURL = 'https://capstone-proj-slack.herokuapp.com'
 
   useEffect(() => {
     if (localStorage.token) {

@@ -15,15 +15,15 @@ function Dashboard(props) {
     let [display, setDisplay] = useState({room: {name: null}})
     let [addRoomDisplay, setAddRoomDisplay] = useState('hidden')
 
-    const roomURL = 'http://localhost:4000/rooms'
-    const dataURL = 'http://localhost:4000/user'
+    const roomURL = 'https://capstone-proj-slack.herokuapp.com/rooms'
+    const dataURL = 'https://capstone-proj-slack.herokuapp.com/user'
     const header = {
         headers: {
             "x-auth-token": localStorage.token
         }
     }
 
-    const ENDPOINT = 'http://localhost:4000'
+    const ENDPOINT = 'https://capstone-proj-slack.herokuapp.com'
     const name = props.user ? props.user.name : null
     
     useEffect(() => {
