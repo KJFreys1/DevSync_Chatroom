@@ -1,6 +1,8 @@
+const config = require('config')
+
 const mongoose = require('mongoose')
 mongoose.Promise = Promise
-const MONGODB_URI = 'mongodb://localhost/chatapp'
+const MONGODB_URI = config.get('mongoURI') || 'mongodb://localhost/chatapp'
 mongoose.connect(MONGODB_URI, { 
     useNewUrlParser: true,
     useUnifiedTopology: true,

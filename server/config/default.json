@@ -1,5 +1,5 @@
 {
-    "mongoURI": "",
+    "mongoURI": "mongodb+srv://kjfreys:Sandrock@cluster0-xjavc.mongodb.net/test?retryWrites=true&w=majority",
     "jwtSecret": "sl_myJwtSecret",
     "jwtSession": {
         "session": false
