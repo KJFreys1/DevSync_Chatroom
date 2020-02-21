@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import './Main.css'
 
@@ -11,6 +11,10 @@ function Main(props) {
     const list = props.list ? props.list : false
     let display = 'No Data'
     let roomList = ''
+
+    useEffect(() => {
+        setShowCom()
+    }, [props.display.room]) 
 
     const handleTextChange = e => {
         e.preventDefault()
@@ -27,6 +31,7 @@ function Main(props) {
         props.createPost(data.room, text)
         setText('')
         setComment('')
+        setShowCom()
     }
 
     const handleCommentSubmit = (e, post) => {
