@@ -77,6 +77,7 @@ function Main(props) {
             display = (
                 <div>
                     <h1>{data.room.name}</h1>
+                    <h6>{data.room._id}</h6>
                     {posts ? posts : ''}
                     <form onSubmit={handlePostSubmit}>
                         <input type="text" id="post" name="post" value={text} onChange={handleTextChange} required />

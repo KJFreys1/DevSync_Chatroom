@@ -76,6 +76,12 @@ function Dashboard(props) {
         }).catch(err => console.log(err))
     }
 
+    const joinRoom = rid => {
+        axios.put(dataURL + '/room/' + rid, header).then(() => {
+            getAllRooms()
+        })
+    }
+
     const deleteRoom = room => {
         axios.delete(dataURL + '/room/' + room._id, header)
         const newRooms = [...rooms]
@@ -136,7 +142,7 @@ function Dashboard(props) {
         <div className='full-dash'>
             <AddRoom display={addRoomDisplay} addRoom={addRoom} />
             <div className='dash-container'>
-                <SideBar rooms={rooms} showAddRoom={showAddRoom} getRoomInfo={getRoomInfo} deleteRoom={deleteRoom} />
+                <SideBar rooms={rooms} showAddRoom={showAddRoom} joinRoom={joinRoom} getRoomInfo={getRoomInfo} deleteRoom={deleteRoom} />
                 <Main display={display} createPost={createPost} deletePost={deletePost} addComment={addComment} />
             </div>
         </div>

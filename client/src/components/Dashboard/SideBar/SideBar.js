@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Room from './Room/Room'
 
 import './SideBar.css'
 
 function SideBar(props) {
+    let [room, setRoom] = useState('')
+
+    const handleRoomChange = e => {
+        e.preventDefault()
+        setRoom(e.target.value)
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        props.joinRoom(room)
+        setRoom('')
+    }
+
     const rooms = props.rooms
         ?   props.rooms.map((room, idx) => {
                 return (
@@ -22,6 +35,10 @@ function SideBar(props) {
                 {rooms}
             </div>
             <button onClick={props.showAddRoom}>New Room</button>
+            <form onSubmit={handleSubmit}>
+                <input type='text' value={room} onChange={handleRoomChange} />
+                <button type='submit'>Submit</button>
+            </form>
         </section>
     )
 }
