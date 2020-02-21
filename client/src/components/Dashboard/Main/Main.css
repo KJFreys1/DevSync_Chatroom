@@ -16,3 +16,18 @@
 .hide-show:hover {
     cursor: pointer;
 }
+
+.full-view {
+    width: 100%;
+}
+
+.partial-view {
+    width: 60%;
+    display: inline-block;
+}
+
+.listed-room {
+    width: 40%;
+    height: 500px;
+    display: inline-block;
+}

@@ -5,6 +5,7 @@ import './SideBar.css'
 
 function SideBar(props) {
     let [room, setRoom] = useState('')
+    const button = props.list ? 'Hide List' : 'List Rooms'
 
     const handleRoomChange = e => {
         e.preventDefault()
@@ -15,6 +16,15 @@ function SideBar(props) {
         e.preventDefault()
         props.joinRoom(room)
         setRoom('')
+    }
+
+    const handleListRooms = e => {
+        e.preventDefault()
+        if (props.list) {
+            props.hideListRooms()
+        } else {
+            props.listRooms()
+        }
     }
 
     const rooms = props.rooms
@@ -30,7 +40,7 @@ function SideBar(props) {
 
     return (
         <section className='sidebar'>
-            <h1>From SideBar</h1>
+            <h1>My Rooms</h1>
             <div>
                 {rooms}
             </div>
@@ -39,6 +49,7 @@ function SideBar(props) {
                 <input type='text' value={room} onChange={handleRoomChange} />
                 <button type='submit'>Submit</button>
             </form>
+            <button onClick={handleListRooms}>{button}</button>
         </section>
     )
 }

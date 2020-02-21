@@ -8,7 +8,9 @@ function Main(props) {
     let [showCom, setShowCom] = useState()
 
     const data = props.display
+    const list = props.list ? props.list : false
     let display = 'No Data'
+    let roomList = ''
 
     const handleTextChange = e => {
         e.preventDefault()
@@ -44,8 +46,14 @@ function Main(props) {
         setShowCom()
     }
 
+    const handleJoinRoom = (e, room) => {
+        e.preventDefault()
+        props.joinRoom(room)
+    }
+
     if (data) {
         if (data.type == 'room') {
+            const displaySize = list ? 'partial-view' : 'full-view'
             const posts = data.posts.map((post, idx) => {
                 const comments = post.comments.map(comment => {
                     return (
@@ -75,7 +83,7 @@ function Main(props) {
                 )
             })
             display = (
-                <div>
+                <div className={displaySize}>
                     <h1>{data.room.name}</h1>
                     <h6>{data.room._id}</h6>
                     {posts ? posts : ''}
@@ -86,10 +94,19 @@ function Main(props) {
                 </div>
             )
         }
+        if (list) {
+            roomList = (
+                <div className='listed-room'>
+                    {list.map(room => <h1 onClick={e => handleJoinRoom(e, room)}>{room.name}</h1>)}
+                </div>
+            )
+            
+        }
     }
 
     return (
         <section className='main'>
+            {roomList}
             {display}
         </section>
     )

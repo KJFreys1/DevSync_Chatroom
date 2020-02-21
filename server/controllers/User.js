@@ -59,7 +59,7 @@ router.post('/room', auth, (req, res) => {
 //@returns      Updated user
 router.put('/room/:rid', auth, (req, res) => {
     Room.findById(req.params.rid).then(room => {
-        User.findById(req.body.id)
+        User.findById(req.user.id)
             .select('-password')
             .then(user => {
                 user.rooms_active.push(room._id)

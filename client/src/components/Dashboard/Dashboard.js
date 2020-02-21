@@ -14,6 +14,7 @@ function Dashboard(props) {
     let [rooms, setRooms] = useState([])
     let [display, setDisplay] = useState({room: {name: null}})
     let [addRoomDisplay, setAddRoomDisplay] = useState('hidden')
+    let [list, setList] = useState('')
 
     const roomURL = 'https://capstone-proj-slack.herokuapp.com/rooms'
     const dataURL = 'https://capstone-proj-slack.herokuapp.com/user'
@@ -41,7 +42,9 @@ function Dashboard(props) {
 
     useEffect(() => {
         socket.on('updatePost', room => {
-            getRoomInfo(room)
+            if (room._id === display.room._id) {
+                getRoomInfo(room)
+            }
         })
 
         return () => {
@@ -57,6 +60,16 @@ function Dashboard(props) {
                 setRooms(res.data)
             })
         }
+    }
+
+    const listRooms = () => {
+        axios.get(roomURL).then(res => {
+            setList(res.data)
+        })
+    }
+
+    const hideListRooms = () => {
+        setList('')
     }
 
     const showAddRoom = () => {
@@ -76,9 +89,13 @@ function Dashboard(props) {
         }).catch(err => console.log(err))
     }
 
-    const joinRoom = rid => {
-        axios.put(dataURL + '/room/' + rid, header).then(() => {
+    const joinRoom = room => {
+        const rid = room._id
+        if (props.user.rooms_active.includes(rid)) return console.log('room exists')
+        axios.put(dataURL + '/room/' + rid, rid, header).then(res => {
             getAllRooms()
+            getRoomInfo(room)
+            setList('')
         })
     }
 
@@ -142,8 +159,24 @@ function Dashboard(props) {
         <div className='full-dash'>
             <AddRoom display={addRoomDisplay} addRoom={addRoom} />
             <div className='dash-container'>
-                <SideBar rooms={rooms} showAddRoom={showAddRoom} joinRoom={joinRoom} getRoomInfo={getRoomInfo} deleteRoom={deleteRoom} />
-                <Main display={display} createPost={createPost} deletePost={deletePost} addComment={addComment} />
+                <SideBar 
+                    rooms={rooms} 
+                    showAddRoom={showAddRoom} 
+                    joinRoom={joinRoom} 
+                    getRoomInfo={getRoomInfo} 
+                    deleteRoom={deleteRoom} 
+                    list={list}
+                    listRooms={listRooms}
+                    hideListRooms={hideListRooms}
+                />
+                <Main 
+                    display={display} 
+                    list={list}
+                    joinRoom={joinRoom}
+                    createPost={createPost} 
+                    deletePost={deletePost} 
+                    addComment={addComment} 
+                />
             </div>
         </div>
     )
