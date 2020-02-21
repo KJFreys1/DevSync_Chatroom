@@ -7,6 +7,12 @@ const Room = require('../models/Room')
 const Post = require('../models/Post')
 const Comment = require('../models/Comment')
 
+router.get('/user/:uid', (req, res) => {
+    User.findById(req.params.uid)
+        .select('-password')
+        .then(user => res.json(user))
+})
+
 //@route        /user/user
 //@desc         Returns the logged in users info
 router.get('/user', auth, (req, res) => {

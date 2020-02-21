@@ -1,22 +1,9 @@
 .main {
     height: 500px;
     width: 75%;
-    background-color: lightgreen;
+    background-color: rgb(199, 199, 199);
     display: flex;
 } 
-
-.post {
-    background-color: rgb(199, 199, 199);
-}
-
-.hide-show {
-    color: blue;
-    text-decoration: underline;
-}
-
-.hide-show:hover {
-    cursor: pointer;
-}
 
 .full-view {
     width: 100%;
@@ -26,12 +13,94 @@
     width: 65%;
 }
 
+.display-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-header-container {
+    background-color: rgb(80, 80, 80);
+    width: 100% - 30px;
+    padding: 10px 0 10px 20px;
+    text-transform: capitalize;
+}
+
+.main-header-title {
+    margin: 10px 0;
+    font-size: 35px;
+}
+
+.main-header-desc {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.content {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.post-container {
+    background-color: rgb(199, 199, 199);
+}
+
+.post-username {
+    margin: 5px 0 5px 20px;
+    font-size: 22px;
+}
+
+.post-message {
+    margin: 5px 0 5px 20px;
+    font-size: 22px;
+}
+
+.comments-container {
+    margin-left: 20px; 
+    padding-left: 20px;
+    border-left: 3px solid rgb(182, 182, 182);
+}
+
+.comment-single {
+    margin: 10px 0 0 0;
+}
+
+.show {
+    margin: 10px 0 20px 20px;
+    font-size: 15px;
+    text-decoration: underline;
+
+}
+
+.show:hover {
+    cursor: pointer;
+}
+
+.hide {
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+.hide:hover {
+    cursor: pointer;
+}
+
+.comment-textbox {
+    margin-top: 20px;
+    width: 90%;
+    height: 50px;
+    font-size: 16px;
+    padding: 10px;
+    background-color: rgb(182, 182, 182);
+}
+
+
+
 .listed-rooms-container {
     width: 35%;
     height: 500px;
     background-color: rgb(200, 200, 200);
     color: rgb(50, 50, 50);
-    border-left: 3px solid rgb(220, 220, 220);
+    border-right: 3px solid rgb(220, 220, 220);
 }
 
 .listed-room {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import './Main.css'
 
@@ -14,7 +15,7 @@ function Main(props) {
 
     useEffect(() => {
         setShowCom()
-    }, [props.display.room]) 
+    }, [props.display.room])
 
     const handleTextChange = e => {
         e.preventDefault()
@@ -56,6 +57,12 @@ function Main(props) {
         props.joinRoom(room)
     }
 
+    // const getCommentUser = (id) => {
+    //     axios.get('https://capstone-proj-slack.herokuapp.com/user/user/' + id).then(res => {
+    //         return `[${res.data.name}]`
+    //     })
+    // }
+
     if (data) {
         if (data.type === 'room') {
             const displaySize = list ? 'partial-view' : 'full-view'
@@ -63,35 +70,39 @@ function Main(props) {
                 const comments = post.comments.map(comment => {
                     return (
                         <div key={idx}>
-                            <p>{comment.message}</p>
+                            <p className='comment-single'>{comment.message}</p>
                         </div>
                     )
                 })
                 const displayComments = idx === showCom
-                    ?   (
-                            <div>
-                                {comments}
-                                <p className='hide-show' onClick={e => handleHideComments(e)}>Hide Comments</p>
-                                <form onSubmit={e => handleCommentSubmit(e, post)}>
-                                    <input type="text" id="comment" name="comment" value={comment} onChange={handleCommentChange} required />
-                                    <button type='submit'>Reply</button>
-                                </form>
-                            </div>
-                        )
-                    :   <p className='hide-show' onClick={e => handleShowComments(e, idx)}>View Comments</p>
+                    ? (
+                        <div className='comments-container'>
+                            {comments}
+                            <form onSubmit={e => handleCommentSubmit(e, post)}>
+                                <input className='comment-textbox' type="text" id="comment" name="comment" value={comment} onChange={handleCommentChange} required /><br />
+                                <button type='submit'>Reply</button>
+                            </form>
+                            <p className='hide' onClick={e => handleHideComments(e)}>Hide Comments</p>
+                        </div>
+                    )
+                    : <p className='show' onClick={e => handleShowComments(e, idx)}>View Comments</p>
                 return (
-                    <div className='post'>
-                        <h2>{post.user.name}</h2>
-                        <h3>{post.message}</h3><span onClick={e => props.deletePost(post)}>Delete</span>
+                    <div className='post-container'>
+                        <h2 className='post-username'>{post.user.name}</h2>
+                        <h3 className='post-message'>{post.message}</h3>
                         {displayComments}
                     </div>
                 )
             })
             display = (
-                <div className={displaySize}>
-                    <h1>{data.room.name}</h1>
-                    <h6>{data.room._id}</h6>
-                    {posts ? posts : ''}
+                <div className={`display-container ${displaySize}`}>
+                    <div className='main-header-container'>
+                        <h1 className='main-header-title'>{data.room.name}</h1>
+                        <h6 className='main-header-desc'>{data.room.description}</h6>
+                    </div>
+                    <div className='content'>
+                        {posts ? posts : ''}
+                    </div>
                     <form onSubmit={handlePostSubmit}>
                         <input type="text" id="post" name="post" value={text} onChange={handleTextChange} required />
                         <button type='submit'>New Post</button>
@@ -112,7 +123,7 @@ function Main(props) {
                     </div>
                 </div>
             )
-            
+
         }
     }
 

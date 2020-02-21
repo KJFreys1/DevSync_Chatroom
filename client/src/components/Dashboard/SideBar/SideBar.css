@@ -3,6 +3,7 @@
     width: 25%;
     background-color: rgb(195, 195, 195);
     color: rgb(50, 50, 50);
+    border-right: 3px solid rgb(220, 220, 220);
 }
 
 .title-side {
