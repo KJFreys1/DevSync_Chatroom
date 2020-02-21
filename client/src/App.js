@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import Header from './components/Header/Header'
@@ -53,6 +53,7 @@ function App() {
   return (
     <main>
       <Header handleLogout={handleLogout} />
+      <Route path='/' exact render={() => <Redirect to='/login' /> } />
       <Route path='/login' render={props => <Login {...props} handleLogin={handleLogin} user={user} />} />
       <Route path='/register' render={props => <Register {...props} handleSignUp={handleSignUp} user={user} />} />
       <Route path='/dashboard' render={props => <Dashboard {...props} user={user} />} />
