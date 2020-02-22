@@ -71,12 +71,14 @@
 .show {
     margin: 10px 0 20px 20px;
     font-size: 15px;
+    width: 110px;
     text-decoration: underline;
 
 }
 
 .show:hover {
     cursor: pointer;
+    color: rgb(129, 180, 214)
 }
 
 .hide {
@@ -88,6 +90,7 @@
 
 .hide:hover {
     cursor: pointer;
+    color: rgb(129, 180, 214);
 }
 
 /* .com-button-container {
@@ -100,10 +103,12 @@
     color: white;
     width: 80px;
     border-radius: 5px;
+    margin-bottom: 15px;
 }
 
 .send-button:hover {
     cursor: pointer;
+    background-color: rgba(50, 50, 50, .8);
 }
 
 .send-button:focus {
@@ -126,17 +131,17 @@
     outline: 2px solid rgba(50, 50, 50, .5);
 }
 
-/* .post-form {
-    position: relative;
-} */
+.post-form {
+    background-color: rgb(182, 182, 182)
+}
 
 .post-textbox {
-    margin: 0 auto 5px 20px;
+    margin: 10px auto 5px 20px;
     width: 90%;
     height: 50px;
     font-size: 16px;
     padding: 10px;
-    background-color: rgb(182, 182, 182);
+    background-color: rgb(200, 200, 200);
     resize: none;
     color: rgb(50, 50, 50);
     line-height: 18px;
@@ -156,6 +161,7 @@
 
 .post-button:hover {
     cursor: pointer;
+    background-color: rgba(50, 50, 50, .8);
 }
 
 .post-button:focus {
