@@ -5,6 +5,7 @@ import './SideBar.css'
 
 function SideBar(props) {
     // let [room, setRoom] = useState('')
+    let [roomActive, setRoomActive] = useState()
     const button = props.list ? '- Hide List' : '+ List Rooms'
 
     // const handleRoomChange = e => {
@@ -27,10 +28,14 @@ function SideBar(props) {
         }
     }
 
+    const handleRoomActive = idx => {
+        setRoomActive(idx)
+    }
+
     const rooms = props.rooms
         ?   props.rooms.map((room, idx) => {
                 return (
-                    <Room room={room} key={idx} getRoomInfo={props.getRoomInfo} />
+                    <Room room={room} key={idx} index={idx} isActive={roomActive} getRoomInfo={props.getRoomInfo} handleRoomActive={handleRoomActive} />
                     // {/* <button onClick={() => props.deleteRoom(room)}>Delete</button> */}
                 )
             })

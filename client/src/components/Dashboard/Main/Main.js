@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ScrollToBottom from 'react-scroll-to-bottom'
 import axios from 'axios'
 
 import './Main.css'
@@ -50,6 +51,7 @@ function Main(props) {
     const handleHideComments = (e) => {
         e.preventDefault()
         setShowCom()
+        setComment('')
     }
 
     const handleJoinRoom = (e, room) => {
@@ -79,10 +81,12 @@ function Main(props) {
                         <div className='comments-container'>
                             {comments}
                             <form onSubmit={e => handleCommentSubmit(e, post)}>
-                                <input className='comment-textbox' type="text" id="comment" name="comment" value={comment} onChange={handleCommentChange} required /><br />
-                                <button type='submit'>Reply</button>
+                                <textarea placeholder='Type your message here...' className='comment-textbox' type="text" id="comment" name="comment" value={comment} onChange={handleCommentChange} required /><br />
+                                <div className='com-button-container'>
+                                    <button className='send-button' type='submit'>Reply</button>
+                                    <p className='hide' onClick={e => handleHideComments(e)}>Hide Comments</p>
+                                </div>
                             </form>
-                            <p className='hide' onClick={e => handleHideComments(e)}>Hide Comments</p>
                         </div>
                     )
                     : <p className='show' onClick={e => handleShowComments(e, idx)}>View Comments</p>
@@ -100,12 +104,12 @@ function Main(props) {
                         <h1 className='main-header-title'>{data.room.name}</h1>
                         <h6 className='main-header-desc'>{data.room.description}</h6>
                     </div>
-                    <div className='content'>
+                    <ScrollToBottom className='content'>
                         {posts ? posts : ''}
-                    </div>
-                    <form onSubmit={handlePostSubmit}>
-                        <input type="text" id="post" name="post" value={text} onChange={handleTextChange} required />
-                        <button type='submit'>New Post</button>
+                    </ScrollToBottom>
+                    <form className='post-form' onSubmit={handlePostSubmit}>
+                        <textarea placeholder='Type your post here...' className='post-textbox' type="text" id="post" name="post" value={text} onChange={handleTextChange} required />
+                        <button className='post-button' type='submit'>New Post</button>
                     </form>
                 </div>
             )
