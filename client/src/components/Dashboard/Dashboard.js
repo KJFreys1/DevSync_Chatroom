@@ -12,6 +12,7 @@ let socket
 
 function Dashboard(props) {
     let [rooms, setRooms] = useState([])
+    let [roomUpdate, setRoomUpdate] = useState([])
     let [display, setDisplay] = useState({room: {name: null}})
     let [addRoomDisplay, setAddRoomDisplay] = useState('hidden')
     let [list, setList] = useState('')
@@ -28,7 +29,7 @@ function Dashboard(props) {
     const name = props.user ? props.user.name : null
     
     useEffect(() => {
-        getAllRooms()
+        getAllRooms(true)
     }, [])
 
     useEffect(() => {
@@ -44,6 +45,10 @@ function Dashboard(props) {
         socket.on('updatePost', room => {
             if (room._id === display.room._id) {
                 getRoomInfo(room)
+            } else {
+                const updatedRooms = [...roomUpdate]
+                updatedRooms.push(room._id)
+                setRoomUpdate(updatedRooms)
             }
         })
 
@@ -53,6 +58,12 @@ function Dashboard(props) {
             socket.off()
         }
     }, [display.posts])
+
+    const seenRoom = rid => {
+        const updatedRooms = [...roomUpdate]
+        updatedRooms.splice(updatedRooms.indexOf(rid), 1)
+        setRoomUpdate(updatedRooms)
+    }
 
     const getAllRooms = () => {
         if (props.user) {
@@ -169,6 +180,8 @@ function Dashboard(props) {
             <div className='dash-container'>
                 <SideBar 
                     rooms={rooms} 
+                    roomUpdate={roomUpdate}
+                    seenRoom={seenRoom}
                     showAddRoom={showAddRoom} 
                     joinRoom={joinRoom} 
                     getRoomInfo={getRoomInfo} 

@@ -12,3 +12,7 @@
 .bar-active {
     background-color: rgb(221, 221, 221);
 }
+
+.bar-unseen {
+    color: white;
+}
