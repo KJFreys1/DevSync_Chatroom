@@ -3,5 +3,7 @@
 }
 
 .full-dash {
-    height: 85vh;;
+    height: 85vh;
+    width: 90%;
+    margin: auto;
 }

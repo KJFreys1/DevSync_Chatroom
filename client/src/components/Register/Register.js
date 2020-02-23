@@ -44,7 +44,7 @@ function Register(props) {
 
     return (
         <div className='login-inner-container'>
-            <h1 className='login-title'>Register for Dev Sync</h1>
+            <h1 className='login-title'>Register for DevSync</h1>
             <form className='input-form' autocomplete='off' onSubmit={handleSubmit}>
                 <div className='input-container-test'>
                     <label className='input-facade-test' for="name">Name</label>

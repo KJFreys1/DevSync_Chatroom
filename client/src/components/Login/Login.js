@@ -29,7 +29,7 @@ function Login(props) {
 
     return (
         <div className='login-inner-container'>
-            <h1 className='login-title'>Log in to Dev Sync</h1>
+            <h1 className='login-title'>Log in to DevSync</h1>
             <form className='input-form' onSubmit={handleSubmit}>
                 <div className='input-container-test'>
                     <label className='input-facade-test' for="email">Email</label><br />

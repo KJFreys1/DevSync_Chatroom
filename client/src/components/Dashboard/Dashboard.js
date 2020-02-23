@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import io from 'socket.io-client'
 
+import Header from '../Header/Header'
 import SideBar from './SideBar/SideBar'
 import Main from './Main/Main'
 import AddRoom from './Modal/AddRoom'
@@ -176,6 +177,7 @@ function Dashboard(props) {
 
     return (
         <div className='full-dash'>
+            <Header name={name} handleLogout={props.handleLogout} />
             <AddRoom display={addRoomDisplay} addRoom={addRoom} />
             <div className='dash-container'>
                 <SideBar 
@@ -189,6 +191,7 @@ function Dashboard(props) {
                     list={list}
                     listRooms={listRooms}
                     hideListRooms={hideListRooms}
+                    handleLogout={props.handleLogout}
                 />
                 <Main 
                     display={display} 
