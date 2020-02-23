@@ -85,7 +85,7 @@ function Main(props) {
                     : <p className='show' onClick={e => handleShowComments(e, idx)}>View Comments</p>
                 return (
                     <div className='post-container'>
-                        <h2 className='post-username'>{post.user.name}</h2>
+                        <h2 className='post-username'>@{post.user.name}</h2>
                         <h3 className='post-message'>{post.message}</h3>
                         {displayComments}
                     </div>

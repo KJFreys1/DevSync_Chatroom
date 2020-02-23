@@ -6,13 +6,15 @@
 }
 
 .header-greeting {
-    margin-top: 5px;
+    font-style: italic;
+    margin-top: 0;
     color: white;
-    font-size: 18px;
+    font-size: 13px;
     text-transform: capitalize;
 }
 
 .logout {
+    font-style: normal;
     float: right;
 }
 

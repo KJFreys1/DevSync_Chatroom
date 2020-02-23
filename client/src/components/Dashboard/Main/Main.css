@@ -25,7 +25,7 @@
     background-color: rgb(31, 37, 53);
     color: white;
     width: 100% - 30px;
-    padding: 10px 0 10px 20px;
+    padding: 0 0 10px 20px;
     text-transform: capitalize;
     border-bottom: 1px solid rgb(49, 58, 83);
 }
@@ -48,35 +48,41 @@
 
 .post-container {
     background-color: rgb(31, 37, 53);
+    padding: 1px 0;
+}
+
+.post-container:hover {
+    background-color: rgb(49, 58, 83);
 }
 
 .post-username {
-    margin: 15px 0 5px 20px;
-    font-size: 22px;
+    margin: 10px 0 0 20px;
+    font-size: 15px;
+    font-style: italic;
 }
 
 .post-message {
     margin: 5px 0 5px 20px;
-    font-size: 22px;
+    font-size: 15px;
 }
 
 .comments-container {
     overflow-x: hidden;
-    margin-left: 20px; 
+    margin: 0 0 15px 20px; 
     padding-left: 20px;
     border-left: 1px solid rgb(184, 189, 231);
 }
 
 .comment-single {
     margin: 10px 0 0 0;
+    font-size: 15px;
 }
 
 .show {
-    margin: 10px 0 20px 20px;
-    font-size: 15px;
-    width: 110px;
+    margin: 10px 0 15px 20px;
+    font-size: 12px;
+    width: 120px;
     text-decoration: underline;
-
 }
 
 .show:hover {
@@ -85,7 +91,7 @@
 }
 
 .hide {
-    font-size: 15px;
+    font-size: 12px;
     text-decoration: underline;
     display: inline;
     margin-left: 20px;
@@ -125,7 +131,7 @@
     margin: 20px 0 5px 0;
     width: 90%;
     height: 50px;
-    font-size: 16px;
+    font-size: 15px;
     padding: 10px;
     background-color: rgb(49, 58, 83);
     color: rgb(184, 189, 231);

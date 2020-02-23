@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 import './AddRoom.css'
 
 function AddRoom(props) {
-    let [name, setName] = useState('')
+    let [room, setRoom] = useState('')
     let [desc, setDesc] = useState('')
 
-    const handleNameChange = e => {
+    const handleRoomChange = e => {
         e.preventDefault()
-        setName(e.target.value)
+        setRoom(e.target.value)
     }
 
     const handleDescChange = e => {
@@ -18,8 +18,8 @@ function AddRoom(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        props.addRoom(name, desc)
-        setName('')
+        props.addRoom(room, desc)
+        setRoom('')
         setDesc('')
     }
 
@@ -27,11 +27,20 @@ function AddRoom(props) {
         <div className={`modal-container ${props.display}`}>
             <div className='modal-textbox'>
                 <form onSubmit={handleSubmit}>
-                    <label for="room-name">Room Name</label><br />
+                    <div className='input-container-test'>
+                        <label className='input-facade-test' for="room">Enter the name of your room</label><br />
+                        <input autocomplete='off' className='input-test' type="room" id="room" name="room" value={room} onChange={handleRoomChange} required />
+                    </div>
+                    <div className='input-container-test'>
+                        <label className='input-facade-test' for="room-desc">Write a short description for you room</label><br />
+                        <input autocomplete='off' className='input-test' type="text" id="room-desc" name="room-desc" value={desc} onChange={handleDescChange} required />
+                    </div>
+                    <button className='room-button' type="submit">Submit</button>
+                    {/* <label for="room-name">Room Name</label><br />
                     <input type="text" id="room-name" name="room-name" value={name} onChange={handleNameChange} required /><br />
                     <label for="room-desc">Description</label><br />
-                    <input type="text" id="room-desc" name="room-desc" value={desc} onChange={handleDescChange} required /><br />
-                    <button type='submit'>Submit</button>
+                    <input type="text" id="room-desc" name="room-desc" value={desc} onChange={handleDescChange} required /><br /> */}
+                    {/* <button type='submit'>Submit</button> */}
                 </form>
             </div>
         </div>
