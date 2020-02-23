@@ -52,7 +52,7 @@ function App() {
 
   return (
     <main>
-      <Header handleLogout={handleLogout} />
+      {/* <Header handleLogout={handleLogout} /> */}
       <Route path='/' exact render={() => <Redirect to='/login' /> } />
       <Route path='/login' render={props => <Login {...props} handleLogin={handleLogin} user={user} />} />
       <Route path='/register' render={props => <Register {...props} handleSignUp={handleSignUp} user={user} />} />

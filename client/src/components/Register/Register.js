@@ -43,28 +43,28 @@ function Register(props) {
     if (props.user) props.history.push('/dashboard')
 
     return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" value={name} onChange={handleNameChange} required />
+        <div className='login-inner-container'>
+            <h1 className='login-title'>Register for Dev Sync</h1>
+            <form className='input-form' autocomplete='off' onSubmit={handleSubmit}>
+                <div className='input-container-test'>
+                    <label className='input-facade-test' for="name">Name</label>
+                    <input type="text" autocomplete="off" className='input-test' id="name" name="name" value={name} onChange={handleNameChange} required />
                 </div>
-                <div>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value={email} onChange={handleEmailChange} required />
+                <div className='input-container-test'>
+                    <label className='input-facade-test' for="email">Email</label>
+                    <input autocomplete='off' className='input-test' type="email" id="email" name="email" value={email} onChange={handleEmailChange} required />
                 </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" value={password} onChange={handlePassChange} required />
+                <div className='input-container-test'>
+                    <label className='input-facade-test' for="password">Password</label>
+                    <input className='input-test' type="password" id="password" name="password" value={password} onChange={handlePassChange} required />
                 </div>
-                <div>
-                    <label for="confirm">Confirm Password</label>
-                    <input type="password" id="confirm" name="confirm" value={confirm} onChange={handleConfirmChange} required />
+                <div className='input-container-test'>
+                    <label className='input-facade-test' for="confirm">Confirm Password</label>
+                    <input className='input-test' type="password" id="confirm" name="confirm" value={confirm} onChange={handleConfirmChange} required />
                 </div>
-                <button type="submit">Register</button>
+                <button className='login-button' type="submit">Create My Account</button>
+                <a className='redirect' href='/login'>Already a user? Sign in here</a>
             </form>
-            <a href='/login'>Login</a>
         </div>
     )
 }
