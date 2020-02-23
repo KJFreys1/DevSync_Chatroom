@@ -6,7 +6,7 @@
 
 .bar:hover {
     cursor: pointer;
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(49, 58, 83);
 }
 
 .bar-active {

@@ -1,9 +1,10 @@
 .main {
     height: 85vh;
     width: 75%;
-    background-color: rgb(199, 199, 199);
+    background-color: rgb(31, 37, 53);
     display: flex;
-    color: rgb(50, 50, 50);
+    color: rgb(184, 189, 231);
+    border-left: 1px solid rgb(49, 58, 83);
 } 
 
 .full-view {
@@ -21,11 +22,12 @@
 
 .main-header-container {
     height: 15vh;
-    background-color: rgb(80, 80, 80);
-    color: rgb(182, 182, 182);
+    background-color: rgb(31, 37, 53);
+    color: white;
     width: 100% - 30px;
     padding: 10px 0 10px 20px;
     text-transform: capitalize;
+    border-bottom: 1px solid rgb(49, 58, 83);
 }
 
 .main-header-title {
@@ -45,7 +47,7 @@
 }
 
 .post-container {
-    background-color: rgb(199, 199, 199);
+    background-color: rgb(31, 37, 53);
 }
 
 .post-username {
@@ -59,9 +61,10 @@
 }
 
 .comments-container {
+    overflow-x: hidden;
     margin-left: 20px; 
     padding-left: 20px;
-    border-left: 3px solid rgb(182, 182, 182);
+    border-left: 1px solid rgb(184, 189, 231);
 }
 
 .comment-single {
@@ -99,7 +102,8 @@
 } */
 
 .send-button {
-    background-color: rgb(50, 50, 50);
+    background-color: rgb(49, 58, 83);
+    border: 1px solid rgb(184, 189, 231);
     color: white;
     width: 80px;
     border-radius: 5px;
@@ -123,7 +127,9 @@
     height: 50px;
     font-size: 16px;
     padding: 10px;
-    background-color: rgb(182, 182, 182);
+    background-color: rgb(49, 58, 83);
+    color: rgb(184, 189, 231);
+    border: 1px solid rgb(184, 189, 231);
     resize: none;
 }
 
@@ -132,7 +138,8 @@
 }
 
 .post-form {
-    background-color: rgb(182, 182, 182)
+    background-color: rgb(31, 37, 53);
+    border-top: 1px solid rgb(49, 58, 83);
 }
 
 .post-textbox {
@@ -141,10 +148,11 @@
     height: 50px;
     font-size: 16px;
     padding: 10px;
-    background-color: rgb(200, 200, 200);
+    background-color: rgb(49, 58, 83);
     resize: none;
-    color: rgb(50, 50, 50);
+    color: rgb(184, 189, 231);
     line-height: 18px;
+    border: 1px solid rgb(184, 189, 231);
 }
 
 .post-textbox:focus {
@@ -153,10 +161,11 @@
 
 .post-button {
     margin: 0 0 10px 20px;
-    background-color: rgb(50, 50, 50);
+    background-color: rgb(49, 58, 83);
     color: white;
     width: 80px;
     border-radius: 5px;
+    border: 1px solid rgb(184, 189, 231);
 }
 
 .post-button:hover {
@@ -174,14 +183,10 @@
 
 .listed-rooms-container {
     width: 35%;
-    height: 500px;
-    background-color: rgb(200, 200, 200);
-    color: rgb(50, 50, 50);
-    border-right: 3px solid rgb(220, 220, 220);
-}
-
-.listed-room {
-    border-top: 3px solid rgb(220, 220, 220);
+    height: 85vh;
+    background-color: rgb(31, 37, 53);
+    color: rgb(184, 189, 231);
+    border-right: 1px solid rgb(49, 58, 83);
 }
 
 .title-list {
@@ -198,5 +203,5 @@
 
 .list-bar:hover {
     cursor: pointer;
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(49, 58, 83);
 }

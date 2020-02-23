@@ -40,9 +40,13 @@ function SideBar(props) {
 
     return (
         <section className='sidebar'>
+            <div className='header'>
+                <h1 className='devsync-title'>DevSync</h1>
+                <h2 className='header-greeting'>@{props.name}<span className='logout' onClick={props.handleLogout}>Log out</span></h2>
+            </div>
             <div className='title-side'>
-                <h1 className='my-rooms'>My Rooms</h1>  
-                <div className='add-room-container'><div className='add-room-button' onClick={props.showAddRoom}>+</div></div>    
+                <h1 className='my-rooms'>My Rooms<div className='add-room-button' onClick={props.showAddRoom}>+</div></h1>  
+                {/* <div className='add-room-button' onClick={props.showAddRoom}>+</div>   */}
             </div>
             <div className='side-rooms-container'>
                 {rooms}

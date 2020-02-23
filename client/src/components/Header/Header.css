@@ -1,10 +1,12 @@
 .devsync-title {
     color: white;
-    margin: 20px 0 0 0;
+    font-size: 40px;
+    margin: 10px 0 0 0;
+    text-decoration: underline;
 }
 
 .header-greeting {
-    margin-top: 10px;
+    margin-top: 5px;
     color: white;
     font-size: 18px;
     text-transform: capitalize;
@@ -16,5 +18,5 @@
 
 .logout:hover {
     cursor: pointer;
-    color: rgb(184, 189, 231);
+    color: rgba(184, 189, 231, .7);
 }

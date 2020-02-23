@@ -177,7 +177,7 @@ function Dashboard(props) {
 
     return (
         <div className='full-dash'>
-            <Header name={name} handleLogout={props.handleLogout} />
+            {/* <Header name={name} handleLogout={props.handleLogout} /> */}
             <AddRoom display={addRoomDisplay} addRoom={addRoom} />
             <div className='dash-container'>
                 <SideBar 
@@ -192,6 +192,7 @@ function Dashboard(props) {
                     listRooms={listRooms}
                     hideListRooms={hideListRooms}
                     handleLogout={props.handleLogout}
+                    name={name}
                 />
                 <Main 
                     display={display} 
@@ -200,6 +201,7 @@ function Dashboard(props) {
                     createPost={createPost} 
                     deletePost={deletePost} 
                     addComment={addComment} 
+                    name={name}
                 />
             </div>
         </div>

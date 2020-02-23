@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom'
-import axios from 'axios'
 
 import './Main.css'
 
@@ -11,7 +10,7 @@ function Main(props) {
 
     const data = props.display
     const list = props.list ? props.list : false
-    let display = 'No Data'
+    let display = ''
     let roomList = ''
 
     useEffect(() => {
@@ -58,12 +57,6 @@ function Main(props) {
         e.preventDefault()
         props.joinRoom(room)
     }
-
-    // const getCommentUser = (id) => {
-    //     axios.get('https://capstone-proj-slack.herokuapp.com/user/user/' + id).then(res => {
-    //         return `[${res.data.name}]`
-    //     })
-    // }
 
     if (data) {
         if (data.type === 'room') {
@@ -129,6 +122,14 @@ function Main(props) {
             )
 
         }
+    }
+
+    if (!display) {
+        display = (
+            <div className='default-view-container'>
+                <h1>Hello, {props.name}, and welcome to DevSync, a hub for instant communication between developers.</h1>
+            </div>
+        )
     }
 
     return (
