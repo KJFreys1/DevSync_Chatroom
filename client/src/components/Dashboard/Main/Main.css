@@ -47,7 +47,7 @@
 
 .not-fixed:hover {
     cursor: pointer;
-    text-decoration: underline;
+    color: rgba(184, 189, 231, .7);
 }
 
 .main-header-desc {
