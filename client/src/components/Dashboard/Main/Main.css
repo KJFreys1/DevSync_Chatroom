@@ -12,7 +12,7 @@
 }
 
 .partial-view {
-    width: 65%;
+    width: 70%;
 }
 
 .display-container {
@@ -186,20 +186,26 @@
     color: rgba(255, 255, 255, .5);
 }
 
-
+/*      List        */
 
 .listed-rooms-container {
-    width: 35%;
-    height: 85vh;
+    width: 30%;
+    height: 100%;
     background-color: rgb(31, 37, 53);
     color: rgb(184, 189, 231);
     border-right: 1px solid rgb(49, 58, 83);
 }
 
 .title-list {
-    margin-left: 20px;
-    height: 20px;
-    line-height: 20px;
+    font-size: 25px;
+    line-height: 10vh;
+    height: 10vh;
+    text-align: center;
+}
+
+.listed-room {
+    overflow: scroll;
+    height: 75vh;
 }
 
 .list-single-container {

@@ -68,13 +68,17 @@ router.put('/room/:rid', auth, (req, res) => {
         User.findById(req.user.id)
             .select('-password')
             .then(user => {
-                user.rooms_active.push(room._id)
-                user.save().then(() => {
-                    room.users.push(user._id)
-                    room.save().then(() => {
-                        res.json(user)
+                if (user.rooms_active.includes(room._id)) {
+                    res.send('err')
+                } else {
+                    user.rooms_active.push(room._id)
+                    user.save().then(() => {
+                        room.users.push(user._id)
+                        room.save().then(() => {
+                            res.json(user)
+                        })
                     })
-                })
+                }
             })
     })
 })

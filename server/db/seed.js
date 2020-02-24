@@ -8,7 +8,7 @@ Room.deleteMany({}).then(() => {
         Post.deleteMany({}).then(() => {
             Comment.deleteMany({}).then(() => {
                 console.log('db deleted, running seed...')
-                createData()
+                // createData()
             })
         })
     })

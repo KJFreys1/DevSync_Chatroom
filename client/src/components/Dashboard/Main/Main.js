@@ -10,6 +10,17 @@ function Main(props) {
 
     const data = props.display
     const list = props.list ? props.list : false
+    // console.log(props.roomsActive)
+    // console.log(list)
+    // if (list) {
+    //     list.forEach((li, idx) => {
+    //         if (props.roomsActive.includes(li._id)) {
+    //             // console.log(li)
+    //             list.splice(idx, 1)
+    //         }
+    //     })
+    // }
+    const displaySize = list ? 'partial-view' : 'full-view'
     let display = ''
     let roomList = ''
 
@@ -60,7 +71,6 @@ function Main(props) {
 
     if (data) {
         if (data.type === 'room') {
-            const displaySize = list ? 'partial-view' : 'full-view'
             const posts = data.posts.map((post, idx) => {
                 const comments = post.comments.map(comment => {
                     return (
@@ -111,7 +121,7 @@ function Main(props) {
         if (list) {
             roomList = (
                 <div className='listed-rooms-container'>
-                    <h1 className='title-list'>All Rooms</h1>
+                    <div className='title-list'>All Rooms</div>
                     <div className='listed-room'>
                         {list.map(room => (
                             <div className='list-bar' onClick={e => handleJoinRoom(e, room)}>
@@ -127,7 +137,7 @@ function Main(props) {
 
     if (!display) {
         display = (
-            <div className='default-view-container'>
+            <div className={`default-view-container ${displaySize}`}>
                 <h1>Hello, {props.name}, and welcome to DevSync, a hub for instant communication between developers.</h1>
             </div>
         )

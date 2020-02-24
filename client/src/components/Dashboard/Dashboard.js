@@ -30,6 +30,7 @@ function Dashboard(props) {
 
     const ENDPOINT = 'https://capstone-proj-slack.herokuapp.com'
     const name = props.user ? props.user.name : null
+    // const roomsActive = props.user ? props.user.rooms_active : null
 
     useEffect(() => {
         getAllRooms(true)
@@ -106,7 +107,7 @@ function Dashboard(props) {
 
     const joinRoom = room => {
         const rid = room._id
-        if (props.user.rooms_active.includes(rid)) return console.log('room exists')
+        // if (props.user.rooms_active.includes(rid)) return console.log('room exists')
         axios.put(dataURL + '/room/' + rid, rid, header).then(res => {
             getAllRooms()
             getRoomInfo(room)
@@ -187,9 +188,9 @@ function Dashboard(props) {
     return (
         <div className='full-dash'>
             {/* <Header name={name} handleLogout={props.handleLogout} /> */}
-            <AddRoom 
-                display={addRoomDisplay} 
-                addRoom={addRoom} 
+            <AddRoom
+                display={addRoomDisplay}
+                addRoom={addRoom}
                 hideAddRoom={hideAddRoom}
             />
             <div className='dash-container'>
@@ -217,6 +218,7 @@ function Dashboard(props) {
                     deletePost={deletePost}
                     addComment={addComment}
                     name={name}
+                // roomsActive={roomsActive}
                 />
             </div>
         </div>

@@ -22,10 +22,6 @@ function App() {
         setUser(res.data)
       })
     }
-
-    axios.get(dataURL + '/register').then(res => {
-      console.log(res)
-    })
   }, [])
 
   const handleLogin = user => {
