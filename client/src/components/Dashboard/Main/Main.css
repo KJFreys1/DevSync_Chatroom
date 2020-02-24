@@ -21,7 +21,7 @@
 }
 
 .main-header-container {
-    height: 15vh;
+    min-height: 100px;
     background-color: rgb(31, 37, 53);
     color: white;
     width: 100% - 30px;
@@ -33,6 +33,21 @@
 .main-header-title {
     margin: 10px 0;
     font-size: 35px;
+}
+
+.fixed {
+    display: none;
+}
+
+.not-fixed {
+    float: right;
+    margin-right: 20px;
+    font-size: 15px;
+}
+
+.not-fixed:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .main-header-desc {
@@ -217,4 +232,19 @@
 .list-bar:hover {
     cursor: pointer;
     background-color: rgb(49, 58, 83);
+}
+
+/*      Default View        */
+
+.default-greeting {
+    height: 100%;
+    text-align: center;
+}
+
+.greeting-title {
+    margin-top: 20vh;
+}
+
+.greeting-desc {
+    margin-top: 20vh;
 }

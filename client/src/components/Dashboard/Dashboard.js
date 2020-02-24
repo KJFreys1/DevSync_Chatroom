@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import io from 'socket.io-client'
 
-import Header from '../Header/Header'
+import '../Header/Header.css'
 import SideBar from './SideBar/SideBar'
 import Main from './Main/Main'
 import AddRoom from './Modal/AddRoom'
@@ -30,10 +30,9 @@ function Dashboard(props) {
 
     const ENDPOINT = 'https://capstone-proj-slack.herokuapp.com'
     const name = props.user ? props.user.name : null
-    // const roomsActive = props.user ? props.user.rooms_active : null
 
     useEffect(() => {
-        getAllRooms(true)
+        getAllRooms()
     }, [])
 
     useEffect(() => {
@@ -73,6 +72,9 @@ function Dashboard(props) {
         if (props.user) {
             axios.get(dataURL + '/rooms', header).then(res => {
                 setRooms(res.data)
+                if (res.data.length === 0) {
+                    joinRoom( { _id: props.lobby } )
+                }
             })
         }
     }
@@ -107,11 +109,26 @@ function Dashboard(props) {
 
     const joinRoom = room => {
         const rid = room._id
-        // if (props.user.rooms_active.includes(rid)) return console.log('room exists')
-        axios.put(dataURL + '/room/' + rid, rid, header).then(res => {
+        axios.put(dataURL + '/room/' + rid, rid, header).then(() => {
             getAllRooms()
             getRoomInfo(room)
             setList('')
+        })
+    }
+
+    const leaveRoom = room => {
+        const rid = room._id
+        axios.put(dataURL + '/room/leave/' + rid, rid, header).then(() => {
+            getAllRooms()
+            const selectedRoom = rooms.filter(rm => rm._id === room._id)
+            const indexRoom = rooms.indexOf(selectedRoom[0]) - 1
+            if (indexRoom === -1 && rooms.length > 1) {
+                getRoomInfo(rooms[1], true)
+            } else if (indexRoom === -1) {
+                getRoomInfo( {name: null} )
+            } else {
+                getRoomInfo(rooms[indexRoom])
+            }
         })
     }
 
@@ -168,7 +185,7 @@ function Dashboard(props) {
         setDisplay(data)
     }
 
-    const getRoomInfo = room => {
+    const getRoomInfo = (room, deleted) => {
         axios.get(roomURL + '/id/' + room._id).then(res => {
             const data = {
                 room,
@@ -176,6 +193,16 @@ function Dashboard(props) {
                 type: 'room'
             }
             setDisplay(data)
+            const selectedRoom = rooms.filter(rm => rm._id === room._id)
+            const indexRoom = rooms.indexOf(selectedRoom[0])
+            if (indexRoom != -1 && !deleted) {
+                setRoomActive(indexRoom)
+            } else if (indexRoom != -1) {
+                setRoomActive(0)
+            }
+            else {
+                setRoomActive(rooms.length)
+            }
         })
     }
 
@@ -214,6 +241,7 @@ function Dashboard(props) {
                     display={display}
                     list={list}
                     joinRoom={joinRoom}
+                    leaveRoom={leaveRoom}
                     createPost={createPost}
                     deletePost={deletePost}
                     addComment={addComment}

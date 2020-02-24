@@ -83,6 +83,25 @@ router.put('/room/:rid', auth, (req, res) => {
     })
 })
 
+//Leave room
+router.put('/room/leave/:rid', auth, (req, res) => {
+    Room.findById(req.params.rid).then(room => {
+        User.findById(req.user.id)
+            .select('-password')
+            .then(user => {
+                roomIndex = user.rooms_active.indexOf(room._id)
+                user.rooms_active.splice(roomIndex, 1)
+                user.save().then(() => {
+                    userIndex = room.users.indexOf(user._id)
+                    room.users.splice(userIndex, 1)
+                    room.save().then(() => {
+                        res.json(user)
+                    })
+                })
+            })
+    })
+})
+
 //      TEST
 //@route        /user/room/:rid
 //desc          Deletes specified room and cascades to connected users

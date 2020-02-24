@@ -12,17 +12,19 @@
 }
 
 .close-modal {
+    color: rgb(184, 189, 231);
     font-size: 16px;
 }
 
 .close-modal:hover {
     cursor: pointer;
+    color: white;
 }
 
 .modal-container {
     position: fixed;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 85vh;
     background-color: rgba(0, 0, 0, .6);
     overflow: auto;
     margin: auto;
@@ -30,12 +32,11 @@
 }
 
 .modal-textbox {
-    background-color: rgb(184, 189, 231);;
+    background-color: rgb(39, 47, 85);
 	height: 350px;
 	width: 650px;
-	border-radius: 2px;
+	border-radius: 10px;
 	margin: 50px auto;
-	box-shadow: 0 2p rgba(0, 0, 0, 0.2);
 	padding: 20px;
 	line-height: 120%;
 	font-family: 'Arial'

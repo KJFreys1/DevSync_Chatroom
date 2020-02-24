@@ -1,11 +1,12 @@
+.full-dash {
+    height: 85vh;
+    width: 90%;
+    min-width: 900px;
+    margin: auto;
+}
+
 .dash-container {
     display: flex;
     outline: 2px solid rgb(49, 58, 83);
     margin-top: 30px;
-}
-
-.full-dash {
-    height: 85vh;
-    width: 90%;
-    margin: auto;
 }

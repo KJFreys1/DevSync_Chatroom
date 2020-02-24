@@ -21,11 +21,13 @@ function Main(props) {
     //     })
     // }
     const displaySize = list ? 'partial-view' : 'full-view'
+    const isFixed = data.room.fixed ? 'fixed' : 'not-fixed'
     let display = ''
     let roomList = ''
 
     useEffect(() => {
         setShowCom()
+        // document.querySelector('.post-textbox').addEventListener('keypress', onKeyPressed)
     }, [props.display.room])
 
     const handleTextChange = e => {
@@ -69,6 +71,23 @@ function Main(props) {
         props.joinRoom(room)
     }
 
+    const handleLeaveRoom = e => {
+        e.preventDefault()
+        props.leaveRoom(data.room)
+    }
+
+    const enterPost = e => {
+        if (e.key === 'Enter') {
+            handlePostSubmit(e)
+        }
+    }
+
+    const enterComment = (e, post) => {
+        if (e.key === 'Enter') {
+            handleCommentSubmit(e, post)
+        }
+    }
+
     if (data) {
         if (data.type === 'room') {
             const posts = data.posts.map((post, idx) => {
@@ -85,7 +104,7 @@ function Main(props) {
                         <div className='comments-container'>
                             {comments}
                             <form onSubmit={e => handleCommentSubmit(e, post)}>
-                                <textarea placeholder='Type your message here...' className='comment-textbox' type="text" id="comment" name="comment" value={comment} onChange={handleCommentChange} required /><br />
+                                <textarea placeholder='Type your message here...' className='comment-textbox' type="text" id="comment" name="comment" value={comment} onKeyDown={e => enterComment(e, post)} onChange={handleCommentChange} required /><br />
                                 <div className='com-button-container'>
                                     <button className='send-button' type='submit'>Reply</button>
                                     <p className='hide' onClick={e => handleHideComments(e)}>Hide Comments</p>
@@ -105,14 +124,14 @@ function Main(props) {
             display = (
                 <div className={`display-container ${displaySize}`}>
                     <div className='main-header-container'>
-                        <h1 className='main-header-title'>{data.room.name}</h1>
+                        <h1 className='main-header-title'>{data.room.name}<span className={isFixed} onClick={handleLeaveRoom}>Leave Room</span></h1>
                         <h6 className='main-header-desc'>{data.room.description}</h6>
                     </div>
                     <ScrollToBottom className='content'>
                         {posts ? posts : ''}
                     </ScrollToBottom>
                     <form className='post-form' onSubmit={handlePostSubmit}>
-                        <textarea placeholder='Type your post here...' className='post-textbox' type="text" id="post" name="post" value={text} onChange={handleTextChange} required />
+                        <textarea placeholder='Type your post here...' className='post-textbox' type="text" id="post" name="post" value={text} onKeyDown={enterPost} onChange={handleTextChange} required />
                         <button className='post-button' type='submit'>New Post</button>
                     </form>
                 </div>
@@ -131,16 +150,15 @@ function Main(props) {
                     </div>
                 </div>
             )
-
         }
-    }
-
-    if (!display) {
-        display = (
-            <div className={`default-view-container ${displaySize}`}>
-                <h1>Hello, {props.name}, and welcome to DevSync, a hub for instant communication between developers.</h1>
-            </div>
-        )
+        if (!data.room.name) {
+            display = (
+                <div className={`default-greeting ${displaySize}`}>
+                    <h1 className='greeting-title'>Welcome back, {props.name}.</h1>
+                    <h2 className='greeting-desc'>Join a room on the left to get started!</h2>
+                </div>
+            )
+        }
     }
 
     return (

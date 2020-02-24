@@ -39,18 +39,12 @@ function SideBar(props) {
                 <h2 className='header-greeting'>@{props.name}<span className='logout' onClick={props.handleLogout}>Log out</span></h2>
             </div>
             <div className='title-side'>
-                <h1 className='my-rooms'>My Rooms<div className='add-room-button' onClick={props.showAddRoom}>+</div></h1>  
-                {/* <div className='add-room-button' onClick={props.showAddRoom}>+</div>   */}
+                <h1 className='my-rooms'>My Rooms<div className='add-room-button' onClick={props.showAddRoom}>+</div></h1>              
             </div>
+            <h6 className='view-all-rooms' onClick={handleListRooms}>{button}</h6>
             <div className='side-rooms-container'>
                 {rooms}
             </div>
-            {/* <button onClick={props.showAddRoom}>New Room</button> */}
-            {/* <form onSubmit={handleSubmit}>
-                <input type='text' value={room} onChange={handleRoomChange} />
-                <button type='submit'>Submit</button>
-            </form> */}
-            <h6 className='view-all-rooms' onClick={handleListRooms}>{button}</h6>
         </section>
     )
 }

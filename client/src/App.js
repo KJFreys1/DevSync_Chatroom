@@ -7,10 +7,10 @@ import Register from './components/Register/Register'
 import Dashboard from './components/Dashboard/Dashboard'
 
 function App() {
-  let [data, setData] = useState()
   let [user, setUser] = useState()
 
   const dataURL = 'https://capstone-proj-slack.herokuapp.com'
+  const lobby = '5e54327cc1eceb255d8d84de'
 
   useEffect(() => {
     if (localStorage.token) {
@@ -49,8 +49,8 @@ function App() {
     <main>
       <Route path='/' exact render={() => <Redirect to='/login' /> } />
       <Route path='/login' render={props => <Login {...props} handleLogin={handleLogin} user={user} />} />
-      <Route path='/register' render={props => <Register {...props} handleSignUp={handleSignUp} user={user} />} />
-      <Route path='/dashboard' render={props => <Dashboard {...props} handleLogout={handleLogout} user={user} />} />
+      <Route path='/register' render={props => <Register {...props} handleLogout={handleLogout} handleSignUp={handleSignUp} user={user} />} />
+      <Route path='/dashboard' render={props => <Dashboard {...props} lobby={lobby} handleLogout={handleLogout} user={user} />} />
     </main>
   );
 }
