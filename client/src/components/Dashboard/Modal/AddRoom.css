@@ -1,4 +1,4 @@
-.hidden {
+.hide-modal {
     display: none;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .modal-textbox {
-    background-color: white;
+    background-color: rgb(184, 189, 231);;
 	height: 350px;
 	width: 550px;
 	border-radius: 2px;

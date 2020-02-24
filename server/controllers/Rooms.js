@@ -19,7 +19,13 @@ router.get('/', (req, res) => {
 //@route        /rooms/id/:id
 //@desc         Gets a specific room by id and returns its posts and their comments
 router.get('/id/:id', (req, res) => {
-    Post.find({room: req.params.id}).populate('comments').populate('user').then(post => {
+    Post.find({room: req.params.id}).populate('comments').populate('user').populate({
+        path: 'comments',
+        populate: { 
+            path: 'user',
+            select: 'name'
+        }
+    }).then(post => {
         res.json(post)
     })
 })

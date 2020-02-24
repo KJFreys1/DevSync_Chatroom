@@ -14,21 +14,22 @@ let socket
 function Dashboard(props) {
     let [rooms, setRooms] = useState([])
     let [roomUpdate, setRoomUpdate] = useState([])
-    let [display, setDisplay] = useState({room: {name: null}})
-    let [addRoomDisplay, setAddRoomDisplay] = useState('hidden')
+    let [display, setDisplay] = useState({ room: { name: null } })
+    let [addRoomDisplay, setAddRoomDisplay] = useState('hide-modal')
     let [list, setList] = useState('')
 
     const roomURL = 'https://capstone-proj-slack.herokuapp.com/rooms'
     const dataURL = 'https://capstone-proj-slack.herokuapp.com/user'
     const header = {
         headers: {
-            "x-auth-token": localStorage.token
+            "x-auth-token": localStorage.token,
+            "Access-Control-Allow-Origin": "*",
         }
     }
 
     const ENDPOINT = 'https://capstone-proj-slack.herokuapp.com'
     const name = props.user ? props.user.name : null
-    
+
     useEffect(() => {
         getAllRooms(true)
     }, [])
@@ -85,11 +86,11 @@ function Dashboard(props) {
     }
 
     const showAddRoom = () => {
-        setAddRoomDisplay('show')
+        setAddRoomDisplay('show-modal')
     }
 
     const hideAddRoom = () => {
-        setAddRoomDisplay('hidden')
+        setAddRoomDisplay('hide-modal')
     }
 
     const addRoom = (name, description) => {
@@ -117,7 +118,7 @@ function Dashboard(props) {
         newRooms.splice(rooms.indexOf(room), 1)
         setRooms(newRooms)
         if (display.room === room) {
-            setDisplay({}) 
+            setDisplay({})
         }
     }
 
@@ -128,7 +129,7 @@ function Dashboard(props) {
             user: props.user,
             comments: []
         }
-        const data = {...display}
+        const data = { ...display }
         data.posts.push(tempPost)
         setDisplay(data)
         axios.post(dataURL + '/post/' + room._id, post, header).then(res => {
@@ -144,7 +145,7 @@ function Dashboard(props) {
 
     const deletePost = (post) => {
         axios.delete(dataURL + '/post/' + post._id, header)
-        const data = {...display}
+        const data = { ...display }
         data.posts.splice(data.posts.indexOf(post), 1)
         setDisplay(data)
         socket.emit('sendPost', display.room)
@@ -154,10 +155,12 @@ function Dashboard(props) {
         const comment = { message: text }
         axios.post(dataURL + '/comment/' + post._id, comment, header).then(() => {
             socket.emit('sendPost', display.room)
-        })
-        const data = {...display}
-        const newPost = {...post}
-        newPost.comments.push(comment)
+        }).catch(err => console.log(err))
+        const data = { ...display }
+        const newPost = { ...post }
+        const newComment = { ...comment }
+        newComment.user = { name }
+        newPost.comments.push(newComment)
         data.posts.splice(data.posts.indexOf(post), 1, newPost)
         setDisplay(data)
     }
@@ -180,27 +183,27 @@ function Dashboard(props) {
             {/* <Header name={name} handleLogout={props.handleLogout} /> */}
             <AddRoom display={addRoomDisplay} addRoom={addRoom} />
             <div className='dash-container'>
-                <SideBar 
-                    rooms={rooms} 
+                <SideBar
+                    rooms={rooms}
                     roomUpdate={roomUpdate}
                     seenRoom={seenRoom}
-                    showAddRoom={showAddRoom} 
-                    joinRoom={joinRoom} 
-                    getRoomInfo={getRoomInfo} 
-                    deleteRoom={deleteRoom} 
+                    showAddRoom={showAddRoom}
+                    joinRoom={joinRoom}
+                    getRoomInfo={getRoomInfo}
+                    deleteRoom={deleteRoom}
                     list={list}
                     listRooms={listRooms}
                     hideListRooms={hideListRooms}
                     handleLogout={props.handleLogout}
                     name={name}
                 />
-                <Main 
-                    display={display} 
+                <Main
+                    display={display}
                     list={list}
                     joinRoom={joinRoom}
-                    createPost={createPost} 
-                    deletePost={deletePost} 
-                    addComment={addComment} 
+                    createPost={createPost}
+                    deletePost={deletePost}
+                    addComment={addComment}
                     name={name}
                 />
             </div>

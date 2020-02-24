@@ -139,7 +139,10 @@ router.post('/post/:rid', auth, (req, res) => {
                     post.save().then(() => {
                         room.posts.push(post._id)
                         room.save().then(() => {
-                            Post.find({ room: room._id }).populate('user').populate('comments').then(posts => {
+                            Post.find({ room: room._id }).populate('user').populate('comments').populate({
+                                path: 'comments',
+                                populate: { path: 'user' }
+                            }).then(posts => {
                                 res.json({
                                     post,
                                     posts,

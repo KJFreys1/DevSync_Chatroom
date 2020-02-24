@@ -65,6 +65,7 @@ function Main(props) {
                 const comments = post.comments.map(comment => {
                     return (
                         <div key={idx}>
+                            <p className='comment-single'>@{comment.user.name}</p>
                             <p className='comment-single'>{comment.message}</p>
                         </div>
                     )
