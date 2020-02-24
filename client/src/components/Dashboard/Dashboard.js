@@ -13,6 +13,7 @@ let socket
 
 function Dashboard(props) {
     let [rooms, setRooms] = useState([])
+    let [roomActive, setRoomActive] = useState()
     let [roomUpdate, setRoomUpdate] = useState([])
     let [display, setDisplay] = useState({ room: { name: null } })
     let [addRoomDisplay, setAddRoomDisplay] = useState('hide-modal')
@@ -98,6 +99,7 @@ function Dashboard(props) {
         axios.post(dataURL + '/room', room, header).then(res => {
             setRooms(res.data.rooms)
             getRoomInfo(res.data.rooms[res.data.rooms.length - 1])
+            handleRoomActive(res.data.rooms.length - 1)
             hideAddRoom()
         }).catch(err => console.log(err))
     }
@@ -176,12 +178,20 @@ function Dashboard(props) {
         })
     }
 
+    const handleRoomActive = idx => {
+        setRoomActive(idx)
+    }
+
     if (!props.user) props.history.push('/login')
 
     return (
         <div className='full-dash'>
             {/* <Header name={name} handleLogout={props.handleLogout} /> */}
-            <AddRoom display={addRoomDisplay} addRoom={addRoom} />
+            <AddRoom 
+                display={addRoomDisplay} 
+                addRoom={addRoom} 
+                hideAddRoom={hideAddRoom}
+            />
             <div className='dash-container'>
                 <SideBar
                     rooms={rooms}
@@ -196,6 +206,8 @@ function Dashboard(props) {
                     hideListRooms={hideListRooms}
                     handleLogout={props.handleLogout}
                     name={name}
+                    roomActive={roomActive}
+                    handleRoomActive={handleRoomActive}
                 />
                 <Main
                     display={display}

@@ -23,10 +23,20 @@ function AddRoom(props) {
         setDesc('')
     }
 
+    const handleCloseModal = e => {
+        e.preventDefault()
+        props.hideAddRoom()
+        setRoom('')
+        setDesc('')
+    }
+
     return (
         <div className={`modal-container ${props.display}`}>
             <div className='modal-textbox'>
                 <form onSubmit={handleSubmit}>
+                    <div className='close-modal-container'>
+                        <span className='close-modal' onClick={handleCloseModal}>X</span>
+                    </div>
                     <div className='input-container-test'>
                         <label className='input-facade-test' for="room">Enter the name of your room</label><br />
                         <input autocomplete='off' className='input-test' type="room" id="room" name="room" value={room} onChange={handleRoomChange} required />

@@ -6,6 +6,19 @@
     display: block;
 }
 
+.close-modal-container {
+    width: 100%;
+    text-align: right;
+}
+
+.close-modal {
+    font-size: 16px;
+}
+
+.close-modal:hover {
+    cursor: pointer;
+}
+
 .modal-container {
     position: fixed;
     width: 100%;
@@ -19,18 +32,18 @@
 .modal-textbox {
     background-color: rgb(184, 189, 231);;
 	height: 350px;
-	width: 550px;
+	width: 650px;
 	border-radius: 2px;
 	margin: 50px auto;
 	box-shadow: 0 2p rgba(0, 0, 0, 0.2);
-	padding: 2%;
+	padding: 20px;
 	line-height: 120%;
 	font-family: 'Arial'
 }
 
 .room-button {
-    max-width: 500px;
-    width: 500px;
+    display: block;
+    width: 300px;
     margin: auto;
     background-color: rgb(78, 78, 250);
     border: none;
@@ -38,4 +51,16 @@
     height: 40px;
     font-size: 25px;
     color: rgb(184, 189, 231);
+}
+
+.room-button:hover {
+    cursor: pointer;
+    background-color: rgb(78, 78, 250, .8);
+    color: rgb(184, 189, 231, .8);
+}
+
+.room-button:focus {
+    outline: 0;
+    background-color: rgb(78, 78, 250, .5);
+    color: rgb(184, 189, 231, .5);
 }
