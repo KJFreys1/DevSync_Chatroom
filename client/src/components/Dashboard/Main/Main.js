@@ -10,16 +10,6 @@ function Main(props) {
 
     const data = props.display
     const list = props.list ? props.list : false
-    // console.log(props.roomsActive)
-    // console.log(list)
-    // if (list) {
-    //     list.forEach((li, idx) => {
-    //         if (props.roomsActive.includes(li._id)) {
-    //             // console.log(li)
-    //             list.splice(idx, 1)
-    //         }
-    //     })
-    // }
     const displaySize = list ? 'partial-view' : 'full-view'
     const isFixed = data.room.fixed ? 'fixed' : 'not-fixed'
     let display = ''
@@ -27,7 +17,6 @@ function Main(props) {
 
     useEffect(() => {
         setShowCom()
-        // document.querySelector('.post-textbox').addEventListener('keypress', onKeyPressed)
     }, [props.display.room])
 
     const handleTextChange = e => {
