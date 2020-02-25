@@ -7,6 +7,12 @@ const Room = require('../models/Room')
 const Post = require('../models/Post')
 const Comment = require('../models/Comment')
 
+//TERMINOLOGY
+//INVALID:      Unused, remains for potential testing purposes only
+
+//      INVALID
+//@route        /user/user/:uid
+//@desc         Gets a specific user by id
 router.get('/user/:uid', (req, res) => {
     User.findById(req.params.uid)
         .select('-password')
@@ -83,7 +89,8 @@ router.put('/room/:rid', auth, (req, res) => {
     })
 })
 
-//Leave room
+//@route        /user/room/leave/:rid
+//@desc         Disconnects the user from the room
 router.put('/room/leave/:rid', auth, (req, res) => {
     Room.findById(req.params.rid).then(room => {
         User.findById(req.user.id)
@@ -179,6 +186,8 @@ router.post('/post/:rid', auth, (req, res) => {
     })
 })
 
+//@route        /user/post/:pid
+//@desc         Deletes a post by the specific post id
 router.delete('/post/:pid', auth, (req, res) => {
     const pid = req.params.pid
     Post.findByIdAndDelete(pid).then(() => {
