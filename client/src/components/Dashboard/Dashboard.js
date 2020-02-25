@@ -132,15 +132,16 @@ function Dashboard(props) {
         })
     }
 
-    const deleteRoom = room => {
-        axios.delete(dataURL + '/room/' + room._id, header)
-        const newRooms = [...rooms]
-        newRooms.splice(rooms.indexOf(room), 1)
-        setRooms(newRooms)
-        if (display.room === room) {
-            setDisplay({})
-        }
-    }
+    // Used for admin/testing purposes only
+    // const deleteRoom = room => {
+    //     axios.delete(dataURL + '/room/' + room._id, header)
+    //     const newRooms = [...rooms]
+    //     newRooms.splice(rooms.indexOf(room), 1)
+    //     setRooms(newRooms)
+    //     if (display.room === room) {
+    //         setDisplay({})
+    //     }
+    // }
 
     const createPost = (room, text) => {
         const post = { message: text }
@@ -214,7 +215,6 @@ function Dashboard(props) {
 
     return (
         <div className='full-dash'>
-            {/* <Header name={name} handleLogout={props.handleLogout} /> */}
             <AddRoom
                 display={addRoomDisplay}
                 addRoom={addRoom}
