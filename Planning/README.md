@@ -10,7 +10,7 @@ Next was the functionality of the project. I started by getting my server up and
 
 Finally, it was time to style the product. I chose to avoid using CSS libraries so that I could better my understanding of CSS since that is something I typically struggle with. I'm very happy with this decision as I learned a LOT from this experience, and was able to focus on implementing a lot of UI/UX features. This included a background color change when the mouse hovered over a room or post, colors lighting up when text was selected, buttons having different effects for at rest, hovered, and focused, and whole containers getting affected when the user selects an input box or textarea. Although I wish I had more time to make the app more mobile friendly, I am very proud of where my app is today and llok forward to improving upon it in the future.
 
-# Wireframes
+## Wireframes
 
 Images: All images will be posted separately in this folder.
 

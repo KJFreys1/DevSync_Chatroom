@@ -228,7 +228,6 @@ function Dashboard(props) {
                     showAddRoom={showAddRoom}
                     joinRoom={joinRoom}
                     getRoomInfo={getRoomInfo}
-                    deleteRoom={deleteRoom}
                     list={list}
                     listRooms={listRooms}
                     hideListRooms={hideListRooms}

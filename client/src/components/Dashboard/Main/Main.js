@@ -76,7 +76,7 @@ function Main(props) {
             handleCommentSubmit(e, post)
         }
     }
-
+    
     if (data) {
         if (data.type === 'room') {
             const posts = data.posts.map((post, idx) => {

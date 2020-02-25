@@ -10,7 +10,7 @@ function App() {
   let [user, setUser] = useState()
 
   const dataURL = 'https://capstone-proj-slack.herokuapp.com'
-  const lobby = '5e54327cc1eceb255d8d84de'
+  const lobby = '5e555f98f158be5c58f1742f'
 
   useEffect(() => {
     if (localStorage.token) {
