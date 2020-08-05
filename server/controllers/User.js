@@ -109,7 +109,7 @@ router.put('/room/leave/:rid', auth, (req, res) => {
     })
 })
 
-//      TEST
+//      INVALID
 //@route        /user/room/:rid
 //desc          Deletes specified room and cascades to connected users
 //              list of active rooms and deletes all connected posts and 
