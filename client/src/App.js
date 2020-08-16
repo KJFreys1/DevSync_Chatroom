@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet'
 import { Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
@@ -47,7 +48,12 @@ function App() {
 
   return (
     <main>
-      <Route path='/' exact render={() => <Redirect to='/login' /> } />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>DevSync</title>
+        <meta name="description" content="Asynchronous Chatroom" />
+      </Helmet>
+      <Route path='/' exact render={() => <Redirect to='/login' />} />
       <Route path='/login' render={props => <Login {...props} handleLogin={handleLogin} user={user} />} />
       <Route path='/register' render={props => <Register {...props} handleLogout={handleLogout} handleSignUp={handleSignUp} user={user} />} />
       <Route path='/dashboard' render={props => <Dashboard {...props} lobby={lobby} handleLogout={handleLogout} user={user} />} />
