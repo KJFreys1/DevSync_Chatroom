@@ -81,3 +81,7 @@
     color: rgb(184, 189, 231);
     text-align: center;
 }
+
+.input-form p:hover {
+    cursor: pointer;
+}

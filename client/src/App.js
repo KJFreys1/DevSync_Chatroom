@@ -54,7 +54,7 @@ function App() {
         <meta name="description" content="Asynchronous Chatroom" />
       </Helmet>
       <Route path='/' exact render={() => <Redirect to='/login' />} />
-      <Route path='/login' render={props => <Login {...props} handleLogin={handleLogin} user={user} />} />
+      <Route path='/login' render={props => <Login {...props} handleLogin={handleLogin} handleSignUp={handleSignUp} user={user} />} />
       <Route path='/register' render={props => <Register {...props} handleLogout={handleLogout} handleSignUp={handleSignUp} user={user} />} />
       <Route path='/dashboard' render={props => <Dashboard {...props} lobby={lobby} handleLogout={handleLogout} user={user} />} />
     </main>

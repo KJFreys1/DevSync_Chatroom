@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { uuid } from 'uuidv4'
 
 function Register(props) {
     let [name, setName] = useState('')
@@ -24,6 +25,15 @@ function Register(props) {
     const handleConfirmChange = e => {
         e.preventDefault()
         setConfirm(e.target.value)
+    }
+
+    const handleGuest = () => {
+        const user = {
+            name: "Guest",
+            email: uuid() + "@guest",
+            password: "12345678"
+        }
+        props.handleSignUp(user)
     }
 
     const handleSubmit = e => {
@@ -63,6 +73,9 @@ function Register(props) {
                     <input className='input-test' type="password" id="confirm" name="confirm" value={confirm} onChange={handleConfirmChange} required />
                 </div>
                 <button className='login-button' type="submit">Create My Account</button>
+
+                <p className='redirect' onClick={handleGuest}>Continue as guest</p>
+
                 <a className='redirect' href='/login'>Already a user? Sign in here</a>
             </form>
         </div>
