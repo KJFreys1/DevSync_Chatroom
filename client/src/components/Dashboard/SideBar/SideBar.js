@@ -22,6 +22,7 @@ function SideBar(props) {
         } else {
             setBurgerActive('burger-active')
         }
+        props.handleHideMain()
     }
 
     const rooms = props.rooms
@@ -42,8 +43,13 @@ function SideBar(props) {
         :   ''
 
     return (
-        <section className='sidebar'>
-            <div className='side-full'>
+        <section className={`sidebar ${props.sideLength}`}>
+            <div className={`hamburger ${burgerActive}`} onClick={handleMenuClick}>
+                <div className="ham-line"></div>
+                <div className="ham-line"></div>
+                <div className="ham-line"></div>
+            </div>
+            <div className={`side-full ${props.hideSide}`}>
                 <div className='header'>
                     <h1 className='devsync-title'>DevSync</h1>
                     <h2 className='header-greeting'>@{props.name}<span className='logout' onClick={props.handleLogout}>Log out</span></h2>
@@ -55,11 +61,6 @@ function SideBar(props) {
                 <div className='side-rooms-container'>
                     {rooms}
                 </div>
-            </div>
-            <div className={`hamburger ${burgerActive}`} onClick={handleMenuClick}>
-                <div className="ham-line"></div>
-                <div className="ham-line"></div>
-                <div className="ham-line"></div>
             </div>
         </section>
     )

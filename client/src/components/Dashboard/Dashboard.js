@@ -12,12 +12,15 @@ import './Dashboard.css'
 let socket
 
 function Dashboard(props) {
-    let [rooms, setRooms] = useState([])
-    let [roomActive, setRoomActive] = useState()
-    let [roomUpdate, setRoomUpdate] = useState([])
-    let [display, setDisplay] = useState({ room: { name: null } })
-    let [addRoomDisplay, setAddRoomDisplay] = useState('hide-modal')
-    let [list, setList] = useState('')
+    const [rooms, setRooms] = useState([])
+    const [roomActive, setRoomActive] = useState()
+    const [roomUpdate, setRoomUpdate] = useState([])
+    const [display, setDisplay] = useState({ room: { name: null } })
+    const [addRoomDisplay, setAddRoomDisplay] = useState('hide-modal')
+    const [list, setList] = useState('')
+    const [hideMain, setHideMain] = useState('')
+    const [hideSide, setHideSide] = useState('hide-side')
+    const [sideLength, setSideLength] = useState('side-sm')
 
     const roomURL = 'https://capstone-proj-slack.herokuapp.com/rooms'
     const dataURL = 'https://capstone-proj-slack.herokuapp.com/user'
@@ -211,6 +214,18 @@ function Dashboard(props) {
         setRoomActive(idx)
     }
 
+    const handleHideMain = () => {
+        if (hideMain.length) {
+            setHideMain('')
+            setHideSide('hide-side')
+            setSideLength('side-sm')
+        } else {
+            setHideMain('hide-main')
+            setHideSide('')
+            setSideLength('')
+        }
+    }
+
     if (!props.user) props.history.push('/login')
 
     return (
@@ -235,6 +250,9 @@ function Dashboard(props) {
                     name={name}
                     roomActive={roomActive}
                     handleRoomActive={handleRoomActive}
+                    handleHideMain={handleHideMain}
+                    hideSide={hideSide}
+                    sideLength={sideLength}
                 />
                 <Main
                     display={display}
@@ -245,6 +263,7 @@ function Dashboard(props) {
                     deletePost={deletePost}
                     addComment={addComment}
                     name={name}
+                    hideMain={hideMain}
                 // roomsActive={roomsActive}
                 />
             </div>

@@ -13,11 +13,14 @@
 
 @media only screen and (max-width: 900px) {
     .sidebar {
-        /* display: none; */
+        width: 100%;
+    }
+
+    .side-sm {
         width: 10%;
     }
 
-    .side-full {
+    .hide-side {
         display: none;
     }
 
@@ -32,6 +35,7 @@
     }
 
     .burger-active {
+        float: right;
         transform: rotate(90deg);
     }
 
@@ -42,7 +46,7 @@
     }
 
     .header {
-        padding: 20px;
+        padding-top: 12vw;
     }
 
     .devsync-title {
@@ -64,10 +68,14 @@
         width: 100%;
     }
 
+    /**/
     .main {
         /**/
-        /* display: none; */
         width: 90%;
+    }
+
+    .hide-main {
+        display: none;
     }
 
     .main-header-container {

@@ -151,7 +151,7 @@ function Main(props) {
     }
 
     return (
-        <section className='main'>
+        <section className={`main ${props.hideMain}`}>
             {roomList}
             {display}
         </section>
